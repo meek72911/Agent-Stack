@@ -104,9 +104,14 @@ export function Hero() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="flex flex-col items-start text-left">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="mb-6">
-              <span className="inline-flex items-center gap-2 border border-[rgba(249,115,22,0.35)] bg-[rgba(249,115,22,0.08)] px-4 py-1.5 rounded-full text-sm text-[#F97316] font-medium">
-                <span className="h-2 w-2 rounded-full bg-[#F97316] animate-pulse" />
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ duration: 0.5 }} 
+              className="mb-6 inline-block"
+            >
+              <span className="inline-flex items-center gap-2 border border-[rgba(249,115,22,0.35)] bg-[rgba(249,115,22,0.08)] px-4 py-1.5 rounded-full text-sm text-[#F97316] font-medium shadow-[0_0_20px_rgba(249,115,22,0.2)] animate-float-slow">
+                <span className="h-2 w-2 rounded-full bg-[#F97316] animate-pulse shadow-[0_0_10px_rgba(249,115,22,0.8)]" />
                 Powered by Claude · Open Source
               </span>
             </motion.div>
@@ -144,27 +149,53 @@ export function Hero() {
                 transformStyle: 'preserve-3d',
               }}
             >
+              {/* Gradient border top */}
               <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(249,115,22,0.6), rgba(139,92,246,0.3), rgba(249,115,22,0.6), transparent)' }} />
+              
+              {/* Window controls */}
               <div className="flex h-12 items-center justify-between gap-2 border-b border-[#1C1F2E] bg-[#0D0F17]/90 px-4">
                 <div className="flex items-center gap-2">
-                  <div className="h-3 w-3 rounded-full bg-[#FF5F56] hover:bg-red-400 transition-colors" />
-                  <div className="h-3 w-3 rounded-full bg-[#FFBD2E] hover:bg-yellow-300 transition-colors" />
-                  <div className="h-3 w-3 rounded-full bg-[#27C93F] hover:bg-green-400 transition-colors" />
+                  <div className="h-3 w-3 rounded-full bg-[#FF5F56]" />
+                  <div className="h-3 w-3 rounded-full bg-[#FFBD2E]" />
+                  <div className="h-3 w-3 rounded-full bg-[#27C93F]" />
                 </div>
                 <span className="text-xs text-[#3F4558] font-mono">AgentStack Dashboard</span>
                 <div className="w-12" />
               </div>
+              
+              {/* Dashboard Content */}
               <div className="aspect-[16/10] w-full bg-gradient-to-br from-[#0D0F17] via-[#13161F] to-[#0D0F17] p-5">
                 <div className="grid h-full grid-cols-4 gap-4">
-                  <div className="col-span-1 rounded-xl bg-[#0D0F17] border border-[#1C1F2E] p-4">
-                    <div className="h-3 w-20 rounded bg-[#1C1F2E] mb-4" />
-                    <div className="space-y-2">
-                      <div className="h-2 w-full rounded bg-[#1C1F2E]" />
-                      <div className="h-2 w-3/4 rounded bg-[#1C1F2E]" />
-                      <div className="h-2 w-5/6 rounded bg-[#1C1F2E]" />
+                  {/* Sidebar */}
+                  <div className="col-span-1 rounded-xl bg-[#0D0F17] border border-[#1C1F2E] p-4 space-y-3">
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center">
+                        <span className="text-xs font-bold text-[#07080C]">A</span>
+                      </div>
+                      <span className="text-xs text-[#94A3B8]">AgentStack</span>
+                    </div>
+                    <div className="h-2 w-20 rounded bg-[#1C1F2E]" />
+                    <div className="h-2 w-full rounded bg-[#1C1F2E]" />
+                    <div className="h-2 w-3/4 rounded bg-[#1C1F2E]" />
+                    <div className="mt-4 space-y-2">
+                      <div className="flex items-center gap-2">
+                        <div className="h-2 w-2 rounded-full bg-[#F97316]" />
+                        <div className="h-2 w-16 rounded bg-[#1C1F2E]" />
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="h-2 w-2 rounded-full bg-[#8B5CF6]" />
+                        <div className="h-2 w-14 rounded bg-[#1C1F2E]" />
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="h-2 w-2 rounded-full bg-[#10B981]" />
+                        <div className="h-2 w-12 rounded bg-[#1C1F2E]" />
+                      </div>
                     </div>
                   </div>
+                  
+                  {/* Main Content */}
                   <div className="col-span-3 space-y-4">
+                    {/* Header */}
                     <div className="flex items-center justify-between">
                       <div className="h-6 w-32 rounded bg-[#1C1F2E]" />
                       <div className="flex gap-2">
@@ -172,33 +203,59 @@ export function Hero() {
                         <div className="h-8 w-8 rounded-lg bg-[#1C1F2E]" />
                       </div>
                     </div>
-                    <div className="grid grid-cols-3 gap-4 h-full">
+                    
+                    {/* Cards Row */}
+                    <div className="grid grid-cols-3 gap-4 h-[calc(100%-40px)]">
+                      {/* Card 1 */}
                       <div className="rounded-xl bg-[#0D0F17] border border-[#1C1F2E] p-3">
-                        <div className="h-3 w-16 rounded bg-[#1C1F2E] mb-3" />
+                        <div className="flex items-center gap-2 mb-3">
+                          <div className="h-3 w-3 rounded-full bg-[#F97316]" />
+                          <div className="h-2 w-16 rounded bg-[#1C1F2E]" />
+                        </div>
                         <div className="space-y-2">
-                          <div className="h-20 rounded-lg bg-[#13161F] border border-[#1C1F2E]" />
+                          <div className="h-20 rounded-lg bg-[#13161F] border border-[#1C1F2E] flex items-center justify-center">
+                            <div className="flex gap-1">
+                              {[40, 60, 35, 70, 55].map((h, i) => (
+                                <div key={i} className="w-3 rounded-full bg-[#F97316]/40" style={{ height: `${h}%` }} />
+                              ))}
+                            </div>
+                          </div>
                           <div className="h-14 rounded-lg bg-[#13161F] border border-[#1C1F2E]" />
                         </div>
                       </div>
+                      
+                      {/* Card 2 */}
                       <div className="rounded-xl bg-[#0D0F17] border border-[#1C1F2E] p-3">
-                        <div className="h-3 w-20 rounded bg-[#1C1F2E] mb-3" />
+                        <div className="flex items-center gap-2 mb-3">
+                          <div className="h-3 w-3 rounded-full bg-[#8B5CF6]" />
+                          <div className="h-2 w-20 rounded bg-[#1C1F2E]" />
+                        </div>
                         <div className="space-y-2">
-                          <div className="h-16 rounded-lg bg-[#13161F] border border-[#1C1F2E]" />
-                          <div className="h-20 rounded-lg bg-[#13161F] border border-[#1C1F2E]" />
+                          <div className="h-24 rounded-lg bg-[#13161F] border border-[#1C1F2E]" />
                           <div className="h-12 rounded-lg bg-[#13161F] border border-[#1C1F2E]" />
                         </div>
                       </div>
+                      
+                      {/* Card 3 */}
                       <div className="rounded-xl bg-[#0D0F17] border border-[#1C1F2E] p-3">
-                        <div className="h-3 w-14 rounded bg-[#1C1F2E] mb-3" />
+                        <div className="flex items-center gap-2 mb-3">
+                          <div className="h-3 w-3 rounded-full bg-[#10B981]" />
+                          <div className="h-2 w-14 rounded bg-[#1C1F2E]" />
+                        </div>
                         <div className="space-y-2">
+                          <div className="h-18 rounded-lg bg-[#13161F] border border-[#1C1F2E] flex items-center justify-center">
+                            <div className="text-xs text-[#3F4558] font-mono">WORKFLOW</div>
+                          </div>
                           <div className="h-14 rounded-lg bg-[#13161F] border border-[#1C1F2E]" />
-                          <div className="h-16 rounded-lg bg-[#13161F] border border-[#1C1F2E]" />
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+              
+              {/* Subtle shine effect on hover */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
             </div>
           </motion.div>
         </div>
