@@ -36,20 +36,20 @@ interface NavItem {
 }
 
 const mainNav: NavItem[] = [
-  { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { label: "Templates", href: "/templates", icon: Layers },
-  { label: "Agents", href: "/agents", icon: Bot, badge: "12" },
-  { label: "Workflows", href: "/workflows", icon: GitBranch },
-  { label: "Integrations", href: "/integrations", icon: Puzzle },
-  { label: "Analytics", href: "/analytics", icon: BarChart3 },
+  { label: "Overview", href: "/dashboard/overview", icon: LayoutDashboard },
+  { label: "Templates", href: "/dashboard/templates", icon: Layers },
+  { label: "Agents", href: "/dashboard/agents", icon: Bot, badge: "12" },
+  { label: "Workflows", href: "/dashboard/workflows", icon: GitBranch },
+  { label: "Integrations", href: "/dashboard/integrations", icon: Puzzle },
+  { label: "Analytics", href: "/dashboard/analytics", icon: BarChart3 },
 ];
 
 const bottomNav: NavItem[] = [
-  { label: "Team", href: "/settings/team", icon: Users },
-  { label: "API Keys", href: "/settings/keys", icon: Key },
-  { label: "Billing", href: "/settings/billing", icon: CreditCard },
-  { label: "Settings", href: "/settings", icon: Settings },
-  { label: "Docs", href: "/docs", icon: BookOpen },
+  { label: "Team", href: "/dashboard/settings/team", icon: Users },
+  { label: "API Keys", href: "/dashboard/settings/keys", icon: Key },
+  { label: "Billing", href: "/dashboard/settings/billing", icon: CreditCard },
+  { label: "Settings", href: "/dashboard/settings", icon: Settings },
+  { label: "Docs", href: "#", icon: BookOpen },
 ];
 
 /** Named export alias used by dashboard layout */
