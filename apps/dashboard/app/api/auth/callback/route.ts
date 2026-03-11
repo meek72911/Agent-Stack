@@ -20,10 +20,10 @@ export async function GET(request: NextRequest) {
                 cookies: {
                     get(name: string) { return cookieStore.get(name)?.value; },
                     set(name: string, value: string, options: Record<string, unknown>) {
-                        try { cookieStore.set({ name, value, ...options as any }); } catch { }
+                        try { cookieStore.set({ name, value, ...options as any }); } catch { /* ignore */ }
                     },
                     remove(name: string, options: Record<string, unknown>) {
-                        try { cookieStore.set({ name, value: "", ...options as any }); } catch { }
+                        try { cookieStore.set({ name, value: "", ...options as any }); } catch { /* ignore */ }
                     },
                 },
             }
