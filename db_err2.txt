@@ -1,0 +1,6 @@
+Connecting to remote database...
+Found local migration files to be inserted before the last migration on remote database.
+
+Rerun the command with --include-all flag to apply these migrations:
+supabase\migrations\00000000000000_initial_schema.sql
+

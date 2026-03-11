@@ -1,0 +1,15 @@
+Connecting to remote database...
+Skipping migration 00000000000000_functions.sql.bak... (file name must match pattern "<timestamp>_name.sql")
+Do you want to push these migrations to the remote database?
+ • 00000000000005_fix_onboarding_trigger.sql
+
+ [Y/n] Y
+Applying migration 00000000000005_fix_onboarding_trigger.sql...
+NOTICE (42P07): relation "user_api_keys" already exists, skipping
+NOTICE (42P07): relation "idx_user_api_keys_user" already exists, skipping
+ERROR: policy "Users manage own API keys" for table "user_api_keys" already exists (SQLSTATE 42710)
+At statement: 3                                                                                    
+CREATE POLICY "Users manage own API keys" ON public.user_api_keys                                  
+    USING (auth.uid() = user_id)                                                                   
+    WITH CHECK (auth.uid() = user_id)                                                              
+Try rerunning the command with --debug to troubleshoot the error.

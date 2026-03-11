@@ -1,0 +1,15 @@
+Connecting to remote database...
+Skipping migration 00000000000000_functions.sql.bak... (file name must match pattern "<timestamp>_name.sql")
+Do you want to push these migrations to the remote database?
+ • 00000000000005_fix_onboarding_trigger.sql
+
+ [Y/n] Y
+Applying migration 00000000000005_fix_onboarding_trigger.sql...
+NOTICE (42P07): relation "user_api_keys" already exists, skipping
+NOTICE (42P07): relation "idx_user_api_keys_user" already exists, skipping
+ERROR: syntax error at or near "NOT" (SQLSTATE 42601)                            
+At statement: 9                                                                  
+-- 4. Add INSERT policy on profiles so the trigger can write                     
+CREATE POLICY IF NOT EXISTS "Service role can insert profiles" ON public.profiles
+                 ^                                                               
+Try rerunning the command with --debug to troubleshoot the error.
