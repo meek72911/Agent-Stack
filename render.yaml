@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: agentstack-api
+    env: python
+    plan: free
+    buildCommand: pip install -r apps/api/requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: SUPABASE_URL
+        value: YOUR_SUPABASE_URL_HERE
+      - key: SUPABASE_ANON_KEY
+        value: YOUR_SUPABASE_ANON_KEY_HERE
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        value: YOUR_SERVICE_ROLE_KEY_HERE
+      - key: DATABASE_URL
+        value: YOUR_DATABASE_URL_HERE
+      - key: REDIS_URL
+        value: YOUR_REDIS_URL_HERE
+      - key: ENCRYPTION_KEY
+        value: YOUR_ENCRYPTION_KEY_HERE
+      - key: JWT_SECRET
+        value: YOUR_JWT_SECRET_HERE
+      - key: ENVIRONMENT
+        value: production
+    rootDir: apps/api
