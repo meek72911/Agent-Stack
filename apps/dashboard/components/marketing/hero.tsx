@@ -9,6 +9,9 @@ import { gsap } from "gsap";
 export function Hero() {
   const cardRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const orb1Ref = useRef<HTMLDivElement>(null);
+  const orb2Ref = useRef<HTMLDivElement>(null);
+  const orb3Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!containerRef.current || !cardRef.current) return;
@@ -18,6 +21,7 @@ export function Hero() {
       const x = ((e.clientX - rect.left) / rect.width - 0.5) * 15;
       const y = ((e.clientY - rect.top) / rect.height - 0.5) * 15;
 
+      // 3D tilt on dashboard card
       gsap.to(cardRef.current, {
         rotationY: x,
         rotationX: -y,
@@ -25,6 +29,32 @@ export function Hero() {
         ease: "power2.out",
         transformPerspective: 1000,
       });
+
+      // Parallax effect on orbs (inverse movement for depth)
+      if (orb1Ref.current) {
+        gsap.to(orb1Ref.current, {
+          x: -x * 0.5,
+          y: -y * 0.5,
+          duration: 0.5,
+          ease: "power2.out",
+        });
+      }
+      if (orb2Ref.current) {
+        gsap.to(orb2Ref.current, {
+          x: -x * 0.3,
+          y: -y * 0.3,
+          duration: 0.5,
+          ease: "power2.out",
+        });
+      }
+      if (orb3Ref.current) {
+        gsap.to(orb3Ref.current, {
+          x: -x * 0.7,
+          y: -y * 0.7,
+          duration: 0.5,
+          ease: "power2.out",
+        });
+      }
     };
 
     containerRef.current.addEventListener("mousemove", handleMouseMove);
@@ -37,6 +67,19 @@ export function Hero() {
       y: 30,
       duration: 1,
       ease: "power3.out",
+    });
+
+    // Ambient float animations for orbs
+    [orb1Ref, orb2Ref, orb3Ref].forEach((ref, i) => {
+      if (ref.current) {
+        gsap.to(ref.current, {
+          y: `+=${15 + i * 5}`,
+          duration: 4 + i,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+      }
     });
 
     return () => {
@@ -88,7 +131,11 @@ export function Hero() {
             </motion.div>
           </div>
           <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.4 }} className="relative" ref={containerRef}>
-            <div className="absolute right-0 top-1/2 z-0 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-[#F97316]/10 blur-[100px]" />
+            {/* Parallax background orbs */}
+            <div ref={orb1Ref} className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-gradient-to-r from-orange-500/30 to-amber-500/20 blur-[120px]" />
+            <div ref={orb2Ref} className="absolute -bottom-40 -left-32 h-80 w-80 rounded-full bg-gradient-to-r from-violet-500/20 to-purple-500/30 blur-[100px]" />
+            <div ref={orb3Ref} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-48 w-48 rounded-full bg-gradient-to-r from-orange-500/20 to-amber-500/10 blur-[80px]" />
+            
             <div
               ref={cardRef}
               className="relative animate-float overflow-hidden rounded-3xl border border-[rgba(249,115,22,0.3)] shadow-premium"
