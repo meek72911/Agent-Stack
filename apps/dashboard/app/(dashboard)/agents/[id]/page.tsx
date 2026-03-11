@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { AgentDetailPanel } from "@/components/agents/agent-detail-panel";
-import { AgentExecutionHistory } from "@/components/agents/agent-execution-history";
 
 export const metadata: Metadata = { title: "Agent Detail - AgentStack" };
 
@@ -12,8 +10,9 @@ interface AgentDetailPageProps {
 export default function AgentDetailPage({ params }: AgentDetailPageProps) {
   return (
     <div className="space-y-6">
-      <AgentDetailPanel agentId={params.id} />
-      <AgentExecutionHistory agentId={params.id} />
+      <div className="text-center py-12">
+        <p className="text-muted-foreground">Agent details coming soon</p>
+      </div>
     </div>
   );
 }

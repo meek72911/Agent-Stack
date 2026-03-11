@@ -5,7 +5,7 @@ from urllib.parse import urlparse
 # Get the DB URL
 # The password has a %40 in it, we need to unquote it for psycopg2 to understand if passing explicitly,
 # but passing the DSN directly is fine for psycopg2
-db_url = "postgresql://postgres:8796105115%40Bb@db.xtjprakqvjrbdpzgsdsh.supabase.co:5432/postgres"
+db_url = "postgresql://postgres.aqjzibtflndcsdtglikh:8796105115%40Bb@aws-1-ap-northeast-1.pooler.supabase.com:5432/postgres"
 
 # Path to SQL migration
 sql_path = r"c:\Users\vipul\OneDrive\Desktop\nebulla\agentstack-full\agentstack\supabase\migrations\00000000000005_fix_onboarding_trigger.sql"

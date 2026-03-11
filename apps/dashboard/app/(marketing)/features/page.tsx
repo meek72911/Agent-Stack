@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { FeatureShowcase } from "@/components/marketing/feature-showcase";
+import { Features } from "@/components/marketing/features";
 
 export const metadata: Metadata = {
   title: "Features - AgentStack",
@@ -18,7 +18,7 @@ export default function FeaturesPage() {
           83 production-ready agents. Full pipeline templates. Your keys, your control.
         </p>
       </div>
-      <FeatureShowcase />
+      <Features />
     </div>
   );
 }

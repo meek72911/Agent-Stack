@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { apiClient } from '@/lib/api';
+import { api } from '@/lib/api';
 
 interface Template {
   id: string;
@@ -17,6 +17,10 @@ export function useTemplates(category?: string, search?: string) {
   if (category) params.set('category', category);
   if (search) params.set('q', search);
   const key = `/templates?${params.toString()}`;
-  const { data, error, isLoading } = useSWR<Template[]>(key, apiClient.get);
+  const fetcher = async (url: string): Promise<Template[]> => {
+    const result = await api.get<Template[]>(url);
+    return result.data ?? [];
+  };
+  const { data, error, isLoading } = useSWR<Template[]>(key, fetcher);
   return { templates: data ?? [], error, isLoading };
 }

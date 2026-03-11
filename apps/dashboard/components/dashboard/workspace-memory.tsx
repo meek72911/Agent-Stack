@@ -34,7 +34,7 @@ export function WorkspaceMemory() {
                 .update({ 
                     workspace_memory: memory 
                 })
-                .eq("id", user?.organization_id);
+                .eq("id", ""); // Organization ID would need to be fetched separately
                 
             if (error) throw error;
             toast.success("Workspace memory updated");

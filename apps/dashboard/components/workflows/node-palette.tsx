@@ -18,10 +18,9 @@ export function NodePalette() {
   const handleAddNode = (type: string, label: string) => {
     addNode({
       id: `node-${Date.now()}`,
-      type,
-      label,
+      type: type as any,
       position: { x: 100 + nodes.length * 60, y: 100 + nodes.length * 40 },
-      data: {},
+      data: { label, config: {} },
     });
   };
 

@@ -83,12 +83,16 @@ export interface Workflow {
   createdAt: string;
   updatedAt: string;
   lastRunAt?: string;
+  last_run_at?: string;
   totalRuns: number;
+  total_executions?: number;
   successRate: number;
   schedule?: {
     cron: string;
     timezone: string;
   };
+  status?: string;
+  nodeCount?: number;
 }
 
 export interface CreateWorkflowInput {

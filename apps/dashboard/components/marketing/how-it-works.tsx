@@ -24,8 +24,8 @@ export function HowItWorks() {
             const Icon = step.icon;
             return (
               <motion.div key={step.number} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.15 }} className="relative flex flex-col items-center text-center">
-                <div className={cn("relative z-10 flex h-14 w-14 items-center justify-center rounded-full border-2 bg-[#0D0F, step.border)}>
-                  <Icon className={cn17]", step.bg("h-6 w-6", step.color)} />
+                <div className={cn("relative z-10 flex h-14 w-14 items-center justify-center rounded-full border-2 bg-[#0D0F11]", step.border)}>
+                  <Icon className={cn("h-6 w-6", step.color)} />
                 </div>
                 <span className={cn("mt-4 text-xs font-bold uppercase tracking-widest", step.color)}>Step {step.number}</span>
                 <h3 className="mt-2 text-lg font-semibold" style={{ color: '#F1F5F9' }}>{step.title}</h3>

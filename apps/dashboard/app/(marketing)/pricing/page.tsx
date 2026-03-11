@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { PricingTable } from "@/components/marketing/pricing-table";
-import { PricingFaq } from "@/components/marketing/pricing-faq";
+import { Pricing } from "@/components/marketing/pricing";
+import { FAQ } from "@/components/marketing/faq";
 
 export const metadata: Metadata = {
   title: "Pricing - AgentStack",
@@ -19,8 +19,8 @@ export default function PricingPage() {
           Free to start. Scale as you grow. BYOK means you only pay for the platform.
         </p>
       </div>
-      <PricingTable />
-      <PricingFaq />
+      <Pricing />
+      <FAQ />
     </div>
   );
 }

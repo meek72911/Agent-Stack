@@ -41,7 +41,7 @@ export function Navbar({ variant = "dashboard" }: NavbarProps) {
 
   const initials = user?.name
     ?.split(" ")
-    .map((n) => n[0])
+    .map((n: string) => n[0])
     .join("")
     .toUpperCase() ?? "U";
 
@@ -70,37 +70,6 @@ export function Navbar({ variant = "dashboard" }: NavbarProps) {
           <div className="flex items-center gap-3">
             <Link href="/login"><Button variant="ghost" size="sm" className="text-[#94A3B8] hover:text-[#F1F5F9]">Sign In</Button></Link>
             <Link href="/register"><Button size="sm" className="bg-[#F97316] text-[#07080C] font-semibold" style={{ borderRadius: '8px', boxShadow: '0 0 20px rgba(249,115,22,0.3)' }}>Start Free</Button></Link>
-          </div>
-        </div>
-      </nav>
-    );
-  }
-              { href: "/#features", label: "Features" },
-              { href: "/#pricing", label: "Pricing" },
-              { href: "/#faq", label: "FAQ" },
-              { href: "https://agentstack-api.onrender.com/docs", label: "API Docs" },
-            ].map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                target={link.href.startsWith("http") ? "_blank" : "_self"}
-                rel={link.href.startsWith("http") ? "noopener noreferrer" : ""}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-3">
-            <Link href="/login">
-              <Button variant="ghost" size="sm">
-                Login
-              </Button>
-            </Link>
-            <Link href="/register">
-              <Button size="sm">Sign Up</Button>
-            </Link>
           </div>
         </div>
       </nav>

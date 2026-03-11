@@ -18,10 +18,10 @@ export function Hero() {
               <span className="inline-flex items-center gap-2 border border-[rgba(249,115,22,0.35)] bg-[rgba(249,115,22,0.08)] px-4 py-1.5 rounded-full text-sm text-[#F97316]">✦ Powered by Claude · Open Source</span>
             </motion.div>
             <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} className="font-display text-5xl font-extrabold leading-tight sm:text-6xl lg:text-7xl" style={{ letterSpacing: '-2px', color: '#F1F5F9' }}>
-              Your Agency, <span className="text-gradient">On Autopilot.</span>
+              AI Agents for <span className="text-gradient">Everyone.</span>
             </motion.h1>
             <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }} className="mt-5 max-w-lg text-lg text-[#94A3B8]" style={{ lineHeight: '1.7' }}>
-              Run AI workflows for client reports, competitor research, content pipelines and sales — without writing a single line of code. 82+ templates. Powered by Claude.
+              Students, teachers, creators, founders — anyone can build and run AI workflows with natural language. Zero code. 22+ templates. Powered by Claude.
             </motion.p>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-8 flex flex-wrap items-center gap-4">
               <Link href="/register"><Button size="lg" className="gap-2 text-base bg-[#F97316] text-[#07080C] font-bold" style={{ borderRadius: '10px', padding: '14px 28px', boxShadow: '0 0 40px rgba(249,115,22,0.35)' }}>Start for Free <ArrowRight className="h-5 w-5" /></Button></Link>

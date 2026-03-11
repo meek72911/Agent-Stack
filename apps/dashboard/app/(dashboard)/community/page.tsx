@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { CommunityFeed } from "@/components/dashboard/community-feed";
-import { BountyBoard } from "@/components/dashboard/bounty-board";
 
 export const metadata: Metadata = { title: "Community - AgentStack" };
 
@@ -14,7 +13,6 @@ export default function CommunityPage() {
           Shared workflows, contributions, and bounties
         </p>
       </div>
-      <BountyBoard />
       <CommunityFeed />
     </div>
   );

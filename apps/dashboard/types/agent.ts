@@ -41,6 +41,9 @@ export interface Agent {
   successRate: number;
   avgLatencyMs: number;
   tags: string[];
+  is_active?: boolean;
+  category?: string;
+  role?: string;
 }
 
 export interface AgentRun {

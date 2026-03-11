@@ -1,6 +1,6 @@
 -- ================================================================
 -- AgentStack: Run this in Supabase SQL Editor to fix onboarding
--- URL: https://supabase.com/dashboard/project/xtjprakqvjrbdpzgsdsh/editor
+-- URL: https://supabase.com/dashboard/project/aqjzibtflndcsdtglikh/editor
 -- ================================================================
 
 -- 1. Add user_api_keys table for BYOK (Bring Your Own Key) storage
