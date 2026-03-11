@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, X } from "lucide-react";
@@ -10,172 +9,37 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 const plans = [
-  {
-    name: "Free",
-    description: "Perfect for getting started with AI workflows.",
-    priceMonthly: 0,
-    priceYearly: 0,
-    cta: "Get Started Free",
-    highlighted: false,
-    features: [
-      { name: "2 workflows", included: true },
-      { name: "1,000 runs/month", included: true },
-      { name: "8 workflow templates", included: true },
-      { name: "Basic execution trace", included: true },
-      { name: "Community support", included: true },
-      { name: "BYOK API key support", included: false },
-      { name: "Real-time execution trace", included: false },
-      { name: "Priority support", included: false },
-    ],
-  },
-  {
-    name: "Pro",
-    description: "For growing agencies and teams.",
-    priceMonthly: 49,
-    priceYearly: 490,
-    cta: "Start Pro",
-    highlighted: true,
-    features: [
-      { name: "Unlimited workflows", included: true },
-      { name: "10,000 runs/month", included: true },
-      { name: "82 agent templates", included: true },
-      { name: "Real-time execution trace", included: true },
-      { name: "BYOK API key support", included: true },
-      { name: "Priority support", included: true },
-      { name: "White-label option", included: false },
-      { name: "Dedicated support", included: false },
-    ],
-  },
-  {
-    name: "Team",
-    description: "For agencies with multiple clients.",
-    priceMonthly: 149,
-    priceYearly: 1490,
-    cta: "Start Team",
-    highlighted: false,
-    features: [
-      { name: "Everything in Pro", included: true },
-      { name: "White-label option", included: true },
-      { name: "Agency client management", included: true },
-      { name: "Custom branding", included: true },
-      { name: "Dedicated support", included: true },
-      { name: "Unlimited workflows", included: true },
-      { name: "Unlimited runs/month", included: true },
-      { name: "Priority support", included: true },
-    ],
-  },
+  { name: "Free", description: "Perfect for getting started with AI workflows.", priceMonthly: 0, priceYearly: 0, cta: "Get Started Free", highlighted: false, features: [{ name: "2 workflows", included: true }, { name: "1,000 runs/month", included: true }, { name: "8 workflow templates", included: true }, { name: "Basic execution trace", included: true }, { name: "Community support", included: true }, { name: "BYOK API key support", included: false }, { name: "Real-time execution trace", included: false }, { name: "Priority support", included: false }] },
+  { name: "Pro", description: "For growing agencies and teams.", priceMonthly: 49, priceYearly: 490, cta: "Start Pro", saveAmount: 98, highlighted: true, features: [{ name: "Unlimited workflows", included: true }, { name: "10,000 runs/month", included: true }, { name: "82+ agent templates", included: true }, { name: "Real-time execution trace", included: true }, { name: "BYOK API key support", included: true }, { name: "Priority support", included: true }, { name: "White-label option", included: false }, { name: "Dedicated support", included: false }] },
+  { name: "Team", description: "For agencies with multiple clients.", priceMonthly: 149, priceYearly: 1490, cta: "Start Team", saveAmount: 298, highlighted: false, features: [{ name: "Everything in Pro", included: true }, { name: "White-label option", included: true }, { name: "Agency client management", included: true }, { name: "Custom branding", included: true }, { name: "Dedicated support", included: true }, { name: "Unlimited runs/month", included: true }] },
 ];
 
 export function Pricing() {
   const [annual, setAnnual] = useState(true);
-
   return (
     <section id="pricing" className="py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Simple, Transparent Pricing
-          </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            Start free. Scale as you grow. No hidden fees.
-          </p>
-
+          <span className="text-xs font-semibold tracking-[3px] text-[#F97316] uppercase">Pricing</span>
+          <h2 className="mt-4 font-display text-3xl font-bold sm:text-4xl" style={{ color: '#F1F5F9' }}>Simple, transparent pricing</h2>
+          <p className="mt-4 text-lg text-[#94A3B8]">Start free. Scale as you grow. No hidden fees.</p>
           <div className="mt-8 flex items-center justify-center gap-3">
-            <span
-              className={cn(
-                "text-sm font-medium",
-                !annual && "text-foreground",
-                annual && "text-muted-foreground"
-              )}
-            >
-              Monthly
-            </span>
-            <Switch checked={annual} onCheckedChange={setAnnual} />
-            <span
-              className={cn(
-                "text-sm font-medium",
-                annual && "text-foreground",
-                !annual && "text-muted-foreground"
-              )}
-            >
-              Annual
-            </span>
-            {annual && (
-              <Badge variant="secondary" className="ml-2 text-xs">
-                Save 2 months free
-              </Badge>
-            )}
+            <span className={cn("text-sm font-medium", !annual ? "text-[#F1F5F9]" : "text-[#94A3B8]")}>Monthly</span>
+            <Switch checked={annual} onCheckedChange={setAnnual} className="data-[state=checked]:bg-[#F97316]" />
+            <span className={cn("text-sm font-medium", annual ? "text-[#F1F5F9]" : "text-[#94A3B8]")}>Yearly</span>
+            {annual && <Badge className="ml-2 bg-[#F97316] text-[#07080C] text-xs font-semibold">Save 2 months free</Badge>}
           </div>
         </div>
-
         <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-3">
           {plans.map((plan, i) => (
-            <motion.div
-              key={plan.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={cn(
-                "relative flex flex-col rounded-2xl border p-8",
-                plan.highlighted
-                  ? "border-primary bg-card shadow-xl shadow-primary/10"
-                  : "border-border bg-card"
-              )}
-            >
-              {plan.highlighted && (
-                <Badge className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  MOST POPULAR
-                </Badge>
-              )}
-
-              <h3 className="text-xl font-bold">{plan.name}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                {plan.description}
-              </p>
-
-              <div className="mt-6">
-                {plan.priceMonthly !== null ? (
-                  <>
-                    <span className="text-4xl font-extrabold">
-                      ${annual ? plan.priceYearly : plan.priceMonthly}
-                    </span>
-                    <span className="text-muted-foreground">/mo</span>
-                  </>
-                ) : (
-                  <span className="text-4xl font-extrabold">Custom</span>
-                )}
-              </div>
-
-              <Button
-                className="mt-8"
-                variant={plan.highlighted ? "default" : "outline"}
-                size="lg"
-                asChild
-              >
-                <Link href="/register">{plan.cta}</Link>
-              </Button>
-
+            <motion.div key={plan.name} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }} className={cn("relative flex flex-col rounded-2xl border p-8", plan.highlighted ? "border-[rgba(249,115,22,0.4)] bg-gradient-to-br from-[rgba(249,115,22,0.05)] to-[#0D0F17] shadow-[0_0_60px_rgba(249,115,22,0.1)]" : "border-[#1C1F2E] bg-[#0D0F17]")}>
+              {plan.highlighted && <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#F97316] text-[#07080C] font-bold px-4 py-1 text-xs" style={{ borderRadius: '999px' }}>MOST POPULAR</Badge>}
+              <h3 className="text-xl font-bold" style={{ color: '#F1F5F9' }}>{plan.name}</h3>
+              <p className="mt-2 text-sm text-[#94A3B8]">{plan.description}</p>
+              <div className="mt-6"><div className="flex items-baseline gap-1"><span className="text-4xl font-extrabold" style={{ color: '#F1F5F9' }}>${annual ? plan.priceYearly : plan.priceMonthly}</span><span className="text-[#94A3B8]">/mo</span></div>{annual && plan.saveAmount && <div className="mt-1 text-sm text-[#10B981]">Save ${plan.saveAmount}/year</div>}</div>
+              <Button className={cn("mt-8", plan.highlighted ? "bg-[#F97316] text-[#07080C] font-bold" : "border border-[#1C1F2E] text-[#94A3B8] hover:border-[rgba(249,115,22,0.3)]")} style={{ borderRadius: '10px' }} size="lg" asChild><Link href="/register">{plan.cta}</Link></Button>
               <ul className="mt-8 flex-1 space-y-3">
-                {plan.features.map((feature) => (
-                  <li
-                    key={feature.name}
-                    className="flex items-center gap-3 text-sm"
-                  >
-                    {feature.included ? (
-                      <Check className="h-4 w-4 shrink-0 text-primary" />
-                    ) : (
-                      <X className="h-4 w-4 shrink-0 text-muted-foreground/40" />
-                    )}
-                    <span
-                      className={cn(
-                        !feature.included && "text-muted-foreground/60"
-                      )}
-                    >
-                      {feature.name}
-                    </span>
-                  </li>
-                ))}
+                {plan.features.map((feature) => (<li key={feature.name} className="flex items-center gap-3 text-sm">{feature.included ? <Check className="h-4 w-4 shrink-0 text-[#10B981]" /> : <X className="h-4 w-4 shrink-0 text-[#3F4558]" />}<span className={feature.included ? "text-[#94A3B8]" : "text-[#3F4558]"}>{feature.name}</span></li>))}
               </ul>
             </motion.div>
           ))}

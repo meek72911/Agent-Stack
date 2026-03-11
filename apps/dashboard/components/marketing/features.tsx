@@ -1,129 +1,35 @@
 "use client";
-
 import { motion } from "framer-motion";
-import {
-  Bot,
-  GitBranch,
-  Shield,
-  Zap,
-  BarChart3,
-  Puzzle,
-} from "lucide-react";
+import { Terminal, Lock, FileUp, BarChart3, Bot } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const features = [
-  {
-    icon: Bot,
-    title: "82+ Agent Templates",
-    description:
-      "Ready-to-run workflows for client reports, competitor intelligence, sales pipelines, content repurposing and more.",
-    color: "text-blue-500",
-    bg: "bg-blue-500/10",
-  },
-  {
-    icon: Zap,
-    title: "Real-Time Execution Traces",
-    description:
-      "Watch your agents work step-by-step with live SSE streaming so you always know what's happening.",
-    color: "text-amber-500",
-    bg: "bg-amber-500/10",
-  },
-  {
-    icon: Shield,
-    title: "BYOK — Bring Your Own API Key",
-    description:
-      "Use your own Anthropic or OpenAI API key. AES-256 encrypted. You stay in control.",
-    color: "text-cyan-500",
-    bg: "bg-cyan-500/10",
-  },
-  {
-    icon: GitBranch,
-    title: "File Upload Pipeline",
-    description:
-      "Upload PDFs and DOCX files as context. Agents extract and process them automatically.",
-    color: "text-violet-500",
-    bg: "bg-violet-500/10",
-  },
-  {
-    icon: Puzzle,
-    title: "Multi-Tenant Workspaces",
-    description:
-      "Manage multiple clients or teams from one dashboard with separate workspaces and usage tracking.",
-    color: "text-emerald-500",
-    bg: "bg-emerald-500/10",
-  },
-  {
-    icon: BarChart3,
-    title: "Usage Dashboard",
-    description:
-      "Track runs, tokens, costs and performance across all your workflows in real time.",
-    color: "text-rose-500",
-    bg: "bg-rose-500/10",
-  },
+  { type: "large", icon: Terminal, title: "Real-Time Execution Trace", description: "Watch agents work live with step-by-step streaming.", color: "text-[#10B981]", bg: "bg-[#10B981]/10", terminal: true },
+  { type: "small", icon: Lock, title: "BYOK API Keys", description: "AES-256 encrypted. Your key, your control.", color: "text-[#F97316]", bg: "bg-[#F97316]/10" },
+  { type: "small", icon: FileUp, title: "File Pipeline", description: "PDF + DOCX extraction built in", color: "text-[#8B5CF6]", bg: "bg-[#8B5CF6]/10" },
+  { type: "small", icon: Bot, title: "82+ Templates", description: "Ready to run. Zero setup.", color: "text-[#FBBF24]", bg: "bg-[#FBBF24]/10", mosaic: true },
+  { type: "large", icon: BarChart3, title: "Usage Dashboard", description: "Track runs, tokens, and costs in real time", color: "text-[#06B6D4]", bg: "bg-[#06B6D4]/10", chart: true },
 ];
-
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.1 },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
-  },
-};
 
 export function Features() {
   return (
-    <section id="features" className="bg-muted/30 py-24">
+    <section id="features" className="py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Everything You Need to Ship AI Agents
-          </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            From prototype to production in minutes, not months.
-          </p>
+          <span className="text-xs font-semibold tracking-[3px] text-[#F97316] uppercase">Features</span>
+          <h2 className="mt-4 font-display text-3xl font-bold sm:text-4xl" style={{ color: '#F1F5F9' }}>Built for production</h2>
         </div>
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {features.map((feature) => {
-            const Icon = feature.icon;
-            return (
-              <motion.div
-                key={feature.title}
-                variants={cardVariants}
-                className="group relative rounded-2xl border border-border bg-card p-8 transition-shadow hover:shadow-lg dark:hover:shadow-primary/5"
-              >
-                <div
-                  className={cn(
-                    "flex h-12 w-12 items-center justify-center rounded-xl",
-                    feature.bg
-                  )}
-                >
-                  <Icon className={cn("h-6 w-6", feature.color)} />
-                </div>
-                <h3 className="mt-5 text-lg font-semibold">
-                  {feature.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {feature.description}
-                </p>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
+          {features.map((feature) => (
+            <motion.div key={feature.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className={cn("group relative rounded-2xl border border-[#1C1F2E] bg-[#0D0F17] p-6 transition-all hover:border-[rgba(249,115,22,0.2)]", feature.type === "large" ? "md:col-span-2" : "md:col-span-1")}>
+              {feature.terminal && <div className="mt-4 rounded-lg bg-[#07080C] p-4 font-mono text-sm"><div className="flex items-center gap-2 mb-3"><span className="text-[#3F4558]">$</span><span className="text-[#94A3B8]">run workflow client-report</span></div><div className="space-y-1.5"><div className="text-[#10B981]"><span className="text-[#F97316]">›</span> Initializing Client Report Generator...</div><div className="text-[#94A3B8] pl-4">[■■■■■░░] Fetching company data</div><div className="text-[#94A3B8] pl-4">[■■■░░] Analyzing competitors</div><div className="text-[#10B981]"><span className="text-[#F97316]">›</span> ✓ Complete — report.pdf ready</div></div></div>}
+              {feature.mosaic && <div className="mt-4 flex gap-1 flex-wrap max-w-[120px]">{[...Array(16)].map((_, i) => <div key={i} className="h-3 w-3 rounded-sm" style={{ backgroundColor: ['#F97316', '#8B5CF6', '#10B981', '#FBBF24', '#06B6D4', '#F472B6', '#F97316', '#8B5CF6', '#10B981', '#FBBF24', '#06B6D4', '#F472B6', '#F97316', '#8B5CF6', '#10B981', '#FBBF24'][i] }} />)}</div>}
+              {feature.chart && <div className="mt-4"><div className="flex items-end gap-1 h-20">{[40, 65, 45, 80, 55, 90, 70, 85, 60, 75, 95, 88].map((h, i) => <div key={i} className="flex-1 rounded-sm bg-[#06B6D4]/30" style={{ height: `${h}%` }} />)}</div></div>}
+              {!feature.terminal && !feature.mosaic && !feature.chart && <><div className={cn("flex h-12 w-12 items-center justify-center rounded-xl", feature.bg)}><feature.icon className={cn("h-6 w-6", feature.color)} /></div><div className="mt-4"><h3 className="text-lg font-semibold" style={{ color: '#F1F5F9' }}>{feature.title}</h3><p className="mt-2 text-sm text-[#94A3B8]">{feature.description}</p></div></>}
+              {(feature.terminal || feature.mosaic || feature.chart) && <div className="mt-4"><h3 className="text-lg font-semibold" style={{ color: '#F1F5F9' }}>{feature.title}</h3><p className="mt-2 text-sm text-[#94A3B8]">{feature.description}</p></div>}
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
