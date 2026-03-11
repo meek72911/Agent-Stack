@@ -47,13 +47,14 @@ export function Navbar({ variant = "dashboard" }: NavbarProps) {
 
   if (variant === "marketing") {
     return (
-      <nav className="sticky top-0 z-50 border-b border-[rgba(249,115,22,0.08)] bg-[rgba(7,8,12,0.75)] backdrop-blur-[24px] backdrop-saturate-[180%]">
+      <nav className="sticky top-0 z-50 border-b border-[rgba(249,115,22,0.12)] bg-[rgba(7,8,12,0.8)] backdrop-blur-[32px] backdrop-saturate-[200%]">
+        <div className="absolute inset-0 pointer-events-none" style={{ boxShadow: 'inset 0 -1px 0 rgba(249,115,22,0.05)' }} />
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#F97316]">
+          <Link href="/" className="flex items-center gap-2 group">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-premium shadow-glow-sm group-hover:shadow-glow transition-shadow duration-300">
               <span className="text-lg font-bold text-[#07080C]">A</span>
             </div>
-            <span className="text-xl font-bold text-[#F1F5F9]">AgentStack</span>
+            <span className="text-xl font-bold text-[#F1F5F9] tracking-tight">AgentStack</span>
           </Link>
           <div className="hidden items-center gap-8 md:flex">
             {[
@@ -62,14 +63,14 @@ export function Navbar({ variant = "dashboard" }: NavbarProps) {
               { href: "/docs", label: "Docs" },
               { href: "https://github.com/Meek72vibe/agentstack", label: "GitHub" },
             ].map((link) => (
-              <Link key={link.href} href={link.href} className="text-sm font-medium text-[#94A3B8] transition-all hover:text-[#F1F5F9]" target={link.href.startsWith("http") ? "_blank" : "_self"}>
+              <Link key={link.href} href={link.href} className="text-sm font-medium text-[#94A3B8] transition-all duration-200 hover:text-[#F1F5F9] hover:scale-[1.02]" target={link.href.startsWith("http") ? "_blank" : "_self"}>
                 {link.label}
               </Link>
             ))}
           </div>
           <div className="flex items-center gap-3">
-            <Link href="/login"><Button variant="ghost" size="sm" className="text-[#94A3B8] hover:text-[#F1F5F9]">Sign In</Button></Link>
-            <Link href="/register"><Button size="sm" className="bg-[#F97316] text-[#07080C] font-semibold" style={{ borderRadius: '8px', boxShadow: '0 0 20px rgba(249,115,22,0.3)' }}>Start Free</Button></Link>
+            <Link href="/login"><Button variant="ghost" size="sm" className="text-[#94A3B8] hover:text-[#F1F5F9] hover:bg-[#1C1F2E] transition-all duration-200">Sign In</Button></Link>
+            <Link href="/register"><Button size="sm" className="bg-gradient-premium text-[#07080C] font-semibold shadow-glow-sm hover:shadow-glow transition-all duration-200 hover:scale-[1.02]" style={{ borderRadius: '10px' }}>Start Free</Button></Link>
           </div>
         </div>
       </nav>

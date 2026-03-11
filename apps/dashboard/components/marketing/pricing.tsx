@@ -49,12 +49,18 @@ export function Pricing() {
         </div>
         <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-3">
           {plans.map((plan, i) => (
-            <motion.div key={plan.name} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }} className={cn("relative flex flex-col rounded-2xl border p-8", plan.highlighted ? "border-[rgba(249,115,22,0.4)] bg-gradient-to-br from-[rgba(249,115,22,0.05)] to-[#0D0F17] shadow-[0_0_60px_rgba(249,115,22,0.1)]" : "border-[#1C1F2E] bg-[#0D0F17]")}>
-              {plan.highlighted && <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#F97316] text-[#07080C] font-bold px-4 py-1 text-xs" style={{ borderRadius: '999px' }}>MOST POPULAR</Badge>}
-              <h3 className="text-xl font-bold" style={{ color: '#F1F5F9' }}>{plan.name}</h3>
+            <motion.div key={plan.name} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }} className={cn("relative flex flex-col rounded-3xl border p-8 transition-all duration-300", plan.highlighted ? "border-[rgba(249,115,22,0.5)] bg-gradient-to-br from-[rgba(249,115,22,0.08)] to-[#0D0F17] shadow-premium hover:shadow-[0_0_80px_rgba(249,115,22,0.2)]" : "border-[#1C1F2E] bg-[#0D0F17] hover:border-[rgba(249,115,22,0.3)] hover:shadow-[0_0_40px_rgba(249,115,22,0.05)]")}>
+              {plan.highlighted && <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-premium text-[#07080C] font-bold px-5 py-1 text-xs shadow-glow-sm" style={{ borderRadius: '999px' }}>MOST POPULAR</Badge>}
+              <h3 className="text-xl font-bold tracking-tight" style={{ color: '#F1F5F9' }}>{plan.name}</h3>
               <p className="mt-2 text-sm text-[#94A3B8]">{plan.description}</p>
-              <div className="mt-6"><div className="flex items-baseline gap-1"><span className="text-4xl font-extrabold" style={{ color: '#F1F5F9' }}>${annual ? plan.priceYearly : plan.priceMonthly}</span><span className="text-[#94A3B8]">/mo</span></div>{annual && plan.saveAmount && <div className="mt-1 text-sm text-[#10B981]">Save ${plan.saveAmount}/year</div>}</div>
-              <Button className={cn("mt-8", plan.highlighted ? "bg-[#F97316] text-[#07080C] font-bold" : "border border-[#1C1F2E] text-[#94A3B8] hover:border-[rgba(249,115,22,0.3)]")} style={{ borderRadius: '10px' }} size="lg" asChild><Link href="/register">{plan.cta}</Link></Button>
+              <div className="mt-6">
+                <div className="flex items-baseline gap-1">
+                  <span className="text-4xl font-extrabold" style={{ color: '#F1F5F9' }}>${annual ? plan.priceYearly : plan.priceMonthly}</span>
+                  <span className="text-[#94A3B8]">/mo</span>
+                </div>
+                {annual && plan.saveAmount && <div className="mt-1 text-sm text-[#10B981] font-medium">Save ${plan.saveAmount}/year</div>}
+              </div>
+              <Button className={cn("mt-8 transition-all duration-200 hover:scale-[1.02]", plan.highlighted ? "bg-gradient-premium text-[#07080C] font-bold shadow-glow-sm hover:shadow-glow" : "border border-[#1C1F2E] text-[#94A3B8] hover:border-[rgba(249,115,22,0.5)] hover:text-[#F1F5F9]")} style={{ borderRadius: '12px', padding: '14px 24px' }} size="lg" asChild><Link href="/register">{plan.cta}</Link></Button>
               <ul className="mt-8 flex-1 space-y-3">
                 {plan.features.map((feature) => (<li key={feature.name} className="flex items-center gap-3 text-sm">{feature.included ? <Check className="h-4 w-4 shrink-0 text-[#10B981]" /> : <X className="h-4 w-4 shrink-0 text-[#3F4558]" />}<span className={feature.included ? "text-[#94A3B8]" : "text-[#3F4558]"}>{feature.name}</span></li>))}
               </ul>
