@@ -126,6 +126,25 @@
   }
   .shadow-soft { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2); }
   
+  /* Neon blue glow for board */
+  .glow-board {
+    box-shadow: 
+      0 0 20px rgba(59, 130, 246, 0.4),
+      0 0 40px rgba(59, 130, 246, 0.3),
+      0 0 60px rgba(59, 130, 246, 0.2),
+      0 0 80px rgba(59, 130, 246, 0.1),
+      0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+  
+  .glow-board:hover {
+    box-shadow: 
+      0 0 30px rgba(59, 130, 246, 0.5),
+      0 0 60px rgba(59, 130, 246, 0.4),
+      0 0 90px rgba(59, 130, 246, 0.3),
+      0 0 120px rgba(59, 130, 246, 0.2),
+      0 12px 48px rgba(0, 0, 0, 0.6);
+  }
+  
   /* Animation utilities */
   .animate-float { animation: float 6s ease-in-out infinite; }
   .animate-float-slow { animation: float 8s ease-in-out infinite; }

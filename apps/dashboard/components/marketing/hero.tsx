@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { gsap } from "gsap";
+import { Board as KanbanBoard } from "@/components/kanban";
 
 export function Hero() {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -256,6 +257,13 @@ export function Hero() {
               
               {/* Subtle shine effect on hover */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              
+              {/* The actual Kanban Board */}
+              <div className="absolute inset-0 p-5 flex items-center justify-center">
+                <div className="w-full h-full glow-board rounded-2xl bg-[#0D0F17]/80 backdrop-blur-xl border border-[#1C1F2E]/50 p-4 overflow-hidden">
+                  <KanbanBoard />
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
