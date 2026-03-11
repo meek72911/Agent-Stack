@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { NaturalLanguageBuilder } from "@/components/workflows/natural-language-builder";
 import { WorkflowBuilder } from "@/components/workflows/workflow-builder";
+import { FileUploadZone } from "@/components/workflows/file-upload-zone";
+import { QualityOutputSystem } from "@/components/workflows/quality-output-system";
 
 export const metadata: Metadata = { title: "Workflow Builder - AgentStack" };
 
@@ -15,6 +17,8 @@ export default function WorkflowBuilderPage() {
         </p>
       </div>
       <NaturalLanguageBuilder />
+      <FileUploadZone />
+      <QualityOutputSystem />
       <WorkflowBuilder />
     </div>
   );

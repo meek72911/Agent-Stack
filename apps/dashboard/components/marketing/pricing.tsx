@@ -14,6 +14,23 @@ const plans = [
   { name: "Team", description: "For agencies with multiple clients.", priceMonthly: 149, priceYearly: 1490, cta: "Start Team", saveAmount: 298, highlighted: false, features: [{ name: "Everything in Pro", included: true }, { name: "White-label option", included: true }, { name: "Agency client management", included: true }, { name: "Custom branding", included: true }, { name: "Dedicated support", included: true }, { name: "Unlimited runs/month", included: true }] },
 ];
 
+// Regional pricing multiplier (based on Paritydeals.com model)
+// Will be detected from user's country via geolocation or signup
+const regionalMultipliers: Record<string, number> = {
+  default: 1,
+  India: 0.4,
+  Brazil: 0.45,
+  "South Korea": 0.7,
+  "United Kingdom": 1.1,
+  Australia: 1.2,
+};
+
+// Get regional price based on detected country
+const getRegionalPrice = (basePrice: number, country?: string): number => {
+  const multiplier = country ? regionalMultipliers[country] || 1 : 1;
+  return Math.round(basePrice * multiplier);
+};
+
 export function Pricing() {
   const [annual, setAnnual] = useState(true);
   return (
