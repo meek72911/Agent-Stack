@@ -28,7 +28,7 @@ export function Hero() {
               className="gap-1.5 border-primary/30 bg-primary/5 px-3 py-1 text-sm"
             >
               <Sparkles className="h-3.5 w-3.5 text-primary" />
-              Now in Public Beta
+              Launching March 2026
             </Badge>
           </motion.div>
 
@@ -39,9 +39,9 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="mt-6 max-w-4xl text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl"
           >
-            Build Autonomous AI Agents{" "}
+            Run AI Workflows{" "}
             <span className="bg-gradient-to-r from-primary via-violet-500 to-purple-600 bg-clip-text text-transparent">
-              That Actually Ship
+              Without Writing Code
             </span>
           </motion.h1>
 
@@ -52,9 +52,8 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed"
           >
-            Design, deploy, and manage production-grade AI agents and
-            multi-step workflows -- all from a single platform. No
-            infrastructure headaches, just results.
+            AgentStack gives agencies and teams 82+ pre-built AI agent templates. 
+            Automate client reports, competitor research, content pipelines and more — powered by Claude.
           </motion.p>
 
           {/* CTAs */}
@@ -64,16 +63,16 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mt-10 flex flex-wrap items-center justify-center gap-4"
           >
-            <Link href="/signup">
+            <Link href="/register">
               <Button size="lg" className="gap-2 text-base">
-                Start Building Free
+                Start for Free
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </Link>
-            <Link href="#demo">
+            <Link href="#features">
               <Button variant="outline" size="lg" className="gap-2 text-base">
                 <Play className="h-4 w-4" />
-                Watch Demo
+                See How It Works
               </Button>
             </Link>
           </motion.div>
@@ -119,19 +118,14 @@ export function Hero() {
             className="mt-16 flex flex-col items-center gap-4"
           >
             <p className="text-sm text-muted-foreground">
-              Trusted by 2,000+ teams building the future of AI
+              Trusted by agencies and teams worldwide
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-8 opacity-40">
-              {["Vercel", "Supabase", "Railway", "Resend", "Neon"].map(
-                (name) => (
-                  <span
-                    key={name}
-                    className="text-lg font-semibold tracking-tight"
-                  >
-                    {name}
-                  </span>
-                )
-              )}
+            <div className="flex items-center gap-4">
+              <Link href="/register">
+                <Button variant="outline" size="sm">
+                  Be our first customer
+                </Button>
+              </Link>
             </div>
           </motion.div>
         </div>

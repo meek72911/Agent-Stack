@@ -58,15 +58,17 @@ export function Navbar({ variant = "dashboard" }: NavbarProps) {
 
           <div className="hidden items-center gap-8 md:flex">
             {[
-              { href: "#features", label: "Features" },
-              { href: "#how-it-works", label: "How it Works" },
-              { href: "#pricing", label: "Pricing" },
-              { href: "/docs", label: "Docs" },
+              { href: "/#features", label: "Features" },
+              { href: "/#pricing", label: "Pricing" },
+              { href: "/#faq", label: "FAQ" },
+              { href: "https://agentstack-api.onrender.com/docs", label: "API Docs" },
             ].map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                target={link.href.startsWith("http") ? "_blank" : "_self"}
+                rel={link.href.startsWith("http") ? "noopener noreferrer" : ""}
               >
                 {link.label}
               </Link>
@@ -76,11 +78,11 @@ export function Navbar({ variant = "dashboard" }: NavbarProps) {
           <div className="flex items-center gap-3">
             <Link href="/login">
               <Button variant="ghost" size="sm">
-                Sign in
+                Login
               </Button>
             </Link>
-            <Link href="/signup">
-              <Button size="sm">Get Started</Button>
+            <Link href="/register">
+              <Button size="sm">Sign Up</Button>
             </Link>
           </div>
         </div>

@@ -14,51 +14,51 @@ import { cn } from "@/lib/utils";
 const features = [
   {
     icon: Bot,
-    title: "Intelligent Agents",
+    title: "82+ Agent Templates",
     description:
-      "Design agents with custom tools, memory, and reasoning. Powered by GPT-4, Claude, and open-source models.",
+      "Ready-to-run workflows for client reports, competitor intelligence, sales pipelines, content repurposing and more.",
     color: "text-blue-500",
     bg: "bg-blue-500/10",
   },
   {
-    icon: GitBranch,
-    title: "Visual Workflows",
-    description:
-      "Drag-and-drop workflow builder with conditional branching, loops, and parallel execution.",
-    color: "text-violet-500",
-    bg: "bg-violet-500/10",
-  },
-  {
     icon: Zap,
-    title: "One-Click Deploy",
+    title: "Real-Time Execution Traces",
     description:
-      "Deploy agents to production with zero infrastructure. Auto-scaling, monitoring, and rollbacks built in.",
+      "Watch your agents work step-by-step with live SSE streaming so you always know what's happening.",
     color: "text-amber-500",
     bg: "bg-amber-500/10",
   },
   {
-    icon: Puzzle,
-    title: "200+ Integrations",
+    icon: Shield,
+    title: "BYOK — Bring Your Own API Key",
     description:
-      "Connect to Slack, GitHub, Notion, databases, APIs, and more. Build custom tools in minutes.",
+      "Use your own Anthropic or OpenAI API key. AES-256 encrypted. You stay in control.",
+    color: "text-cyan-500",
+    bg: "bg-cyan-500/10",
+  },
+  {
+    icon: GitBranch,
+    title: "File Upload Pipeline",
+    description:
+      "Upload PDFs and DOCX files as context. Agents extract and process them automatically.",
+    color: "text-violet-500",
+    bg: "bg-violet-500/10",
+  },
+  {
+    icon: Puzzle,
+    title: "Multi-Tenant Workspaces",
+    description:
+      "Manage multiple clients or teams from one dashboard with separate workspaces and usage tracking.",
     color: "text-emerald-500",
     bg: "bg-emerald-500/10",
   },
   {
     icon: BarChart3,
-    title: "Real-Time Analytics",
+    title: "Usage Dashboard",
     description:
-      "Monitor agent performance, token usage, costs, and success rates with live dashboards.",
+      "Track runs, tokens, costs and performance across all your workflows in real time.",
     color: "text-rose-500",
     bg: "bg-rose-500/10",
-  },
-  {
-    icon: Shield,
-    title: "Enterprise Security",
-    description:
-      "SOC 2 Type II, SSO, RBAC, audit logs, and data encryption. Built for regulated industries.",
-    color: "text-cyan-500",
-    bg: "bg-cyan-500/10",
   },
 ];
 

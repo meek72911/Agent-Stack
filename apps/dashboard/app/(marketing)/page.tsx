@@ -1,18 +1,18 @@
-import { HeroSection } from "@/components/marketing/hero-section";
-import { FeaturesGrid } from "@/components/marketing/features-grid";
-import { PricingPreview } from "@/components/marketing/pricing-preview";
-import { TestimonialsSection } from "@/components/marketing/testimonials-section";
-import { CtaSection } from "@/components/marketing/cta-section";
+import { Hero } from "@/components/marketing/hero";
+import { Features } from "@/components/marketing/features";
+import { Pricing } from "@/components/marketing/pricing";
+import { FAQ } from "@/components/marketing/faq";
+import { Waitlist } from "@/components/marketing/waitlist";
 
 /** Landing page -- "/" route */
 export default function HomePage() {
   return (
     <>
-      <HeroSection />
-      <FeaturesGrid />
-      <PricingPreview />
-      <TestimonialsSection />
-      <CtaSection />
+      <Hero />
+      <Features />
+      <Pricing />
+      <FAQ />
+      <Waitlist />
     </>
   );
 }

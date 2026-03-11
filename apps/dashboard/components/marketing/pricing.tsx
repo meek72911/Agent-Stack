@@ -7,57 +7,61 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 const plans = [
   {
     name: "Free",
-    description: "For side projects and experimentation.",
+    description: "Perfect for getting started with AI workflows.",
     priceMonthly: 0,
     priceYearly: 0,
-    cta: "Get Started",
+    cta: "Get Started Free",
     highlighted: false,
     features: [
-      { name: "2 Agents", included: true },
-      { name: "1,000 executions/mo", included: true },
+      { name: "2 workflows", included: true },
+      { name: "1,000 runs/month", included: true },
+      { name: "8 workflow templates", included: true },
+      { name: "Basic execution trace", included: true },
       { name: "Community support", included: true },
-      { name: "Basic analytics", included: true },
-      { name: "Custom tools", included: false },
-      { name: "Team collaboration", included: false },
+      { name: "BYOK API key support", included: false },
+      { name: "Real-time execution trace", included: false },
       { name: "Priority support", included: false },
     ],
   },
   {
     name: "Pro",
-    description: "For startups shipping AI-powered products.",
+    description: "For growing agencies and teams.",
     priceMonthly: 49,
-    priceYearly: 39,
-    cta: "Start Free Trial",
+    priceYearly: 490,
+    cta: "Start Pro",
     highlighted: true,
     features: [
-      { name: "25 Agents", included: true },
-      { name: "50,000 executions/mo", included: true },
+      { name: "Unlimited workflows", included: true },
+      { name: "10,000 runs/month", included: true },
+      { name: "82 agent templates", included: true },
+      { name: "Real-time execution trace", included: true },
+      { name: "BYOK API key support", included: true },
       { name: "Priority support", included: true },
-      { name: "Advanced analytics", included: true },
-      { name: "Custom tools", included: true },
-      { name: "Team collaboration", included: true },
-      { name: "SSO & RBAC", included: false },
+      { name: "White-label option", included: false },
+      { name: "Dedicated support", included: false },
     ],
   },
   {
-    name: "Enterprise",
-    description: "For organizations with advanced needs.",
-    priceMonthly: null,
-    priceYearly: null,
-    cta: "Contact Sales",
+    name: "Team",
+    description: "For agencies with multiple clients.",
+    priceMonthly: 149,
+    priceYearly: 1490,
+    cta: "Start Team",
     highlighted: false,
     features: [
-      { name: "Unlimited Agents", included: true },
-      { name: "Unlimited executions", included: true },
+      { name: "Everything in Pro", included: true },
+      { name: "White-label option", included: true },
+      { name: "Agency client management", included: true },
+      { name: "Custom branding", included: true },
       { name: "Dedicated support", included: true },
-      { name: "Custom analytics", included: true },
-      { name: "Custom tools", included: true },
-      { name: "Team collaboration", included: true },
-      { name: "SSO, RBAC & audit logs", included: true },
+      { name: "Unlimited workflows", included: true },
+      { name: "Unlimited runs/month", included: true },
+      { name: "Priority support", included: true },
     ],
   },
 ];
@@ -98,7 +102,7 @@ export function Pricing() {
             </span>
             {annual && (
               <Badge variant="secondary" className="ml-2 text-xs">
-                Save 20%
+                Save 2 months free
               </Badge>
             )}
           </div>
@@ -121,7 +125,7 @@ export function Pricing() {
             >
               {plan.highlighted && (
                 <Badge className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  Most Popular
+                  MOST POPULAR
                 </Badge>
               )}
 
@@ -147,8 +151,9 @@ export function Pricing() {
                 className="mt-8"
                 variant={plan.highlighted ? "default" : "outline"}
                 size="lg"
+                asChild
               >
-                {plan.cta}
+                <Link href="/register">{plan.cta}</Link>
               </Button>
 
               <ul className="mt-8 flex-1 space-y-3">

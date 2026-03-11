@@ -9,34 +9,39 @@ import {
 
 const faqs = [
   {
-    question: "What AI models does AgentStack support?",
+    question: "What is AgentStack?",
     answer:
-      "AgentStack supports GPT-4o, GPT-4, Claude 3.5 Sonnet, Llama 3, Mistral, and any OpenAI-compatible endpoint. You can switch models per agent or even per workflow step.",
+      "AgentStack is an AI workflow automation platform for agencies and teams. We give you 82+ pre-built agent templates to automate repetitive tasks like client reports, research, content and support — no coding needed.",
   },
   {
-    question: "Do I need to manage infrastructure?",
+    question: "What AI models do you support?",
     answer:
-      "No. AgentStack handles all infrastructure -- compute, scaling, monitoring, and deployments. Your agents run in isolated containers with automatic scaling based on load.",
+      "AgentStack runs on Claude Haiku and Sonnet by Anthropic. You can bring your own API key (BYOK) for full control over your usage and costs.",
   },
   {
-    question: "Can I self-host AgentStack?",
+    question: "Do I need to know how to code?",
     answer:
-      "Yes! We offer a Docker-based self-hosted option for Enterprise customers who need to keep data on-premise. It includes the full platform with SSO integration.",
+      "No. AgentStack is built for non-technical users. Pick a template, configure your inputs, and run.",
   },
   {
-    question: "How does pricing work for executions?",
+    question: "What file types can I upload?",
     answer:
-      "Each agent run counts as one execution. Multi-step workflows count as a single execution regardless of the number of steps. Model token costs are passed through at cost with no markup.",
+      "PDF and DOCX files are supported. Upload documents as context for your agent workflows.",
   },
   {
-    question: "Is my data secure?",
+    question: "Is my API key safe?",
     answer:
-      "Absolutely. We are SOC 2 Type II certified. All data is encrypted at rest and in transit. Agent conversations are isolated per workspace, and you can enable data retention policies.",
+      "Yes. All API keys are encrypted with AES-256 and never stored in plain text.",
   },
   {
-    question: "Can I migrate from LangChain / CrewAI?",
+    question: "Can I white-label AgentStack for my agency?",
     answer:
-      "Yes. We provide migration guides and import tools for LangChain, CrewAI, AutoGen, and custom Python agents. Most migrations take under an hour.",
+      "Yes. The Team plan ($149/month) includes white-label options for agency use.",
+  },
+  {
+    question: "Is there a free plan?",
+    answer:
+      "Yes. Free plan includes 2 workflows and 1,000 runs per month — no credit card needed.",
   },
 ];
 
