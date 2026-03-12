@@ -11,8 +11,8 @@ router = APIRouter()
 
 @router.get("/health")
 async def health_check(
-    supabase: SupabaseDep = Depends(get_supabase),
-    redis: RedisDep = Depends(get_redis),
+    supabase: SupabaseDep,
+    redis: RedisDep,
 ) -> dict:
     """Return API health status with dependency checks."""
     health = {
