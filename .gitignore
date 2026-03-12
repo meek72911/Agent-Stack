@@ -43,6 +43,8 @@ supabase/.temp/
 # Testing
 coverage/
 .nyc_output/
+tests/reports/
+tests/screenshots/
 
 # Misc
 *.tgz
