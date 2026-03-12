@@ -15,11 +15,13 @@ class Settings(BaseSettings):
     # -- App --
     node_env: str = "development"
     app_name: str = "AgentStack"
-    app_url: str = "https://your-app-name.vercel.app"
-    api_url: str = "https://your-api-name.onrender.com"
+    app_url: str = "https://agentstack.dev"
+    api_url: str = "https://api.agentstack.dev"
     debug: bool = False
     log_level: str = "info"
-    cors_origins: str = "https://your-app-name.vercel.app,http://localhost:3000,http://localhost:3002"
+    # CORS: comma-separated list of allowed origins. 
+    # Must be restricted to specific domains in production.
+    cors_origins: str = "https://agentstack.dev,http://localhost:3000,http://localhost:3002"
 
     # -- Database (Supabase Postgres) --
     database_url: str = ""

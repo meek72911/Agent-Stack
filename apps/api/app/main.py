@@ -8,7 +8,9 @@ from typing import AsyncGenerator
 
 import sentry_sdk
 import stripe
-from fastapi import FastAPI
+import logging
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 import redis.asyncio as redis
@@ -189,6 +191,21 @@ def create_app() -> FastAPI:
     _app.include_router(crewai.router, prefix=api_prefix, tags=["Integrations"])
     _app.include_router(a2a_protocol.router, prefix=api_prefix, tags=["Protocols"])
     _app.include_router(agent_marketplace.router, prefix=api_prefix, tags=["Marketplace"])
+
+    # -- Global Exception Handler --
+    @_app.exception_handler(Exception)
+    async def global_exception_handler(request: Request, exc: Exception):
+        logging.error(f"Unhandled exception on {request.url.path}: {exc}", exc_info=True)
+        return JSONResponse(
+            status_code=500,
+            content={
+                "error": {
+                    "code": "internal_error",
+                    "message": "An unexpected error occurred. Please contact support or try again later.",
+                    "path": request.url.path
+                }
+            }
+        )
 
     return _app
 
