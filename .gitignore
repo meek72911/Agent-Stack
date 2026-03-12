@@ -47,3 +47,11 @@ coverage/
 # Misc
 *.tgz
 .cache/
+
+# Document and Junk Files
+*.docx
+*.pdf
+db_err*.txt
+list_out*.txt
+*CHECKLIST*.md
+*STATUS*.md
