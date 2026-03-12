@@ -163,8 +163,8 @@ async def refresh_token(
 
 @router.post("/logout")
 async def logout(
+    current_user: CurrentUser,
     refresh_token: str | None = None,
-    current_user: CurrentUser = None,
 ) -> dict:
     """Invalidate refresh token."""
     try:
