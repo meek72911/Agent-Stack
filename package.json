@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "license": "AGPL-3.0",
-  "packageManager": "pnpm@9.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "engines": {
-    "node": ">=20.0.0",
-    "pnpm": ">=6.0.0"
+    "node": ">=20.0.0"
   },
   "scripts": {
     "dev": "turbo run dev",
