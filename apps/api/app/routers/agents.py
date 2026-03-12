@@ -709,16 +709,44 @@ async def test_run_agent(
         
         agent = agent_resp.data
         
-        # Get LLM provider key (for now, we'll use a placeholder)
-        # In a real implementation, this would fetch from llm_provider_keys table
-        decrypted_key = "sk-placeholder-key"  # This would be decrypted from DB
-        
         # Prepare LiteLLM call
         model = agent.get("model", "gpt-4o-mini")
         system_prompt = agent.get("system_prompt", "You are a helpful assistant.")
         config = agent.get("config", {})
         temperature = config.get("temperature", 0.7)
         max_tokens = config.get("max_tokens", 4096)
+
+        # Get LLM provider key from database
+        # We look for an active encrypted key for this tenant
+        # Map model to provider (simplified)
+        provider = "openai"
+        if "gpt" in model.lower():
+            provider = "openai"
+        elif "claude" in model.lower():
+            provider = "anthropic"
+        elif "gemini" in model.lower():
+            provider = "google"
+            
+        keys_resp = (
+            await supabase.table("api_keys")
+            .select("encrypted_key")
+            .eq("organization_id", tenant_id)
+            .eq("provider", provider)
+            .eq("is_active", True)
+            .execute()
+        )
+        
+        if keys_resp.data and keys_resp.data[0].get("encrypted_key"):
+            decrypted_key = decrypt_key(keys_resp.data[0]["encrypted_key"])
+        else:
+            # Fallback to liteLLM proxy or environment key if available
+            decrypted_key = get_settings().litellm_master_key
+            
+        if not decrypted_key:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f"No API key configured for provider '{provider}'. Please add one in API Keys settings.",
+            )
         
         if request.stream:
             # Return SSE streaming response

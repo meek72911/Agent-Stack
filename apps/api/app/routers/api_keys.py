@@ -104,9 +104,12 @@ async def add_key(
             "name": request.label or f"{request.provider} API Key",
             "key_hash": key_hash,
             "key_prefix": key_prefix,
+            "provider": request.provider,
+            "encrypted_key": encrypted_key,
             "scopes": ["read", "write"],
             "organization_id": tenant_id,
             "created_by": current_user["id"],
+            "workspace_id": request.workspace_id,
             "is_active": True,
         }
         

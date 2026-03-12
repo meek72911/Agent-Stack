@@ -14,7 +14,7 @@ const nextConfig = {
     const apiUrl =
       process.env.NEXT_PUBLIC_API_URL ||
       process.env.API_URL ||
-      "http://localhost:8000";
+      "https://your-api-name.onrender.com";
     return [
       {
         source: "/api/v1/:path*",

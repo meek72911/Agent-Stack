@@ -75,12 +75,12 @@ async def get_current_user(
     try:
         # Validate JWT and get user from Supabase Auth
         user_response = await supabase.auth.get_user(token)
-        user = user_response.user
-        if user is None:
+        if user_response is None or user_response.user is None:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Invalid or expired token",
             )
+        user = user_response.user
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

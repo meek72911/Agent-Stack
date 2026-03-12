@@ -48,7 +48,7 @@ async def get_shared_workflow(
         # Get creator info (if available)
         creator_resp = (
             await supabase.table("profiles")
-            .select("full_name, email")
+            .select("full_name")
             .eq("id", workflow.get("created_by"))
             .single()
             .execute()

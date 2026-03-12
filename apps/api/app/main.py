@@ -28,6 +28,39 @@ from app.routers import (
     usage,
     workflows,
     workspaces,
+    # v1.0 Additional
+    sse_stream,
+    byok,
+    file_upload,
+    output_templates,
+    # v1.1
+    quality,
+    scheduler,
+    pdf_export,
+    docx_export,
+    markdown_export,
+    email_notifications,
+    rag,
+    # v1.2
+    reactflow,
+    gallery,
+    per_run_pricing,
+    # v2.0
+    persona_drift,
+    trend_signal,
+    prd_bridge,
+    cost_quantifier,
+    a2a_protocol,
+    agent_marketplace,
+)
+from app.integrations import (
+    pipedream,
+    blender,
+    after_effects,
+    powerbi,
+    whisper,
+    langgraph,
+    crewai,
 )
 
 # Global instances for lifespan management
@@ -102,6 +135,12 @@ def create_app() -> FastAPI:
 
     # -- Register Routers (all prefixed with /api/v1) --
     api_prefix = "/api/v1"
+    
+    # Root health check for Render
+    @_app.get("/health", tags=["Health"])
+    async def root_health():
+        return {"status": "healthy", "service": "agentstack-api"}
+
     _app.include_router(health.router, prefix=api_prefix, tags=["Health"])
     _app.include_router(auth.router, prefix=api_prefix, tags=["Auth"])
     _app.include_router(onboarding.router, prefix=api_prefix, tags=["Onboarding"])
@@ -115,6 +154,41 @@ def create_app() -> FastAPI:
     _app.include_router(sharing.router, prefix=api_prefix, tags=["Sharing"])
     _app.include_router(billing.router, prefix=api_prefix, tags=["Billing"])
     _app.include_router(community.router, prefix=api_prefix, tags=["Community"])
+
+    # v1.0 Additional Routers
+    _app.include_router(sse_stream.router, prefix=api_prefix, tags=["SSE Streaming"])
+    _app.include_router(byok.router, prefix=api_prefix, tags=["BYOK"])
+    _app.include_router(file_upload.router, prefix=api_prefix, tags=["Files"])
+    _app.include_router(output_templates.router, prefix=api_prefix, tags=["Output Templates"])
+
+    # v1.1 Routers
+    _app.include_router(quality.router, prefix=api_prefix, tags=["Quality"])
+    _app.include_router(scheduler.router, prefix=api_prefix, tags=["Scheduler"])
+    _app.include_router(pdf_export.router, prefix=api_prefix, tags=["Export"])
+    _app.include_router(docx_export.router, prefix=api_prefix, tags=["Export"])
+    _app.include_router(markdown_export.router, prefix=api_prefix, tags=["Export"])
+    _app.include_router(email_notifications.router, prefix=api_prefix, tags=["Notifications"])
+    _app.include_router(pipedream.router, prefix=api_prefix, tags=["Integrations"])
+    _app.include_router(rag.router, prefix=api_prefix, tags=["RAG"])
+
+    # v1.2 Routers
+    _app.include_router(reactflow.router, prefix=api_prefix, tags=["ReactFlow"])
+    _app.include_router(gallery.router, prefix=api_prefix, tags=["Gallery"])
+    _app.include_router(per_run_pricing.router, prefix=api_prefix, tags=["Pricing"])
+
+    # v2.0 Routers
+    _app.include_router(blender.router, prefix=api_prefix, tags=["Integrations"])
+    _app.include_router(after_effects.router, prefix=api_prefix, tags=["Integrations"])
+    _app.include_router(powerbi.router, prefix=api_prefix, tags=["Integrations"])
+    _app.include_router(whisper.router, prefix=api_prefix, tags=["Integrations"])
+    _app.include_router(persona_drift.router, prefix=api_prefix, tags=["Agents"])
+    _app.include_router(trend_signal.router, prefix=api_prefix, tags=["Agents"])
+    _app.include_router(prd_bridge.router, prefix=api_prefix, tags=["Agents"])
+    _app.include_router(cost_quantifier.router, prefix=api_prefix, tags=["Agents"])
+    _app.include_router(langgraph.router, prefix=api_prefix, tags=["Integrations"])
+    _app.include_router(crewai.router, prefix=api_prefix, tags=["Integrations"])
+    _app.include_router(a2a_protocol.router, prefix=api_prefix, tags=["Protocols"])
+    _app.include_router(agent_marketplace.router, prefix=api_prefix, tags=["Marketplace"])
 
     return _app
 

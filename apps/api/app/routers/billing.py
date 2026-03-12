@@ -164,8 +164,8 @@ async def create_subscription(
         # In a real implementation, this would create a Stripe checkout session
         # For now, we'll return a placeholder response
         
-        success_url = request.success_url or f"{settings.frontend_url}/billing/success"
-        cancel_url = request.cancel_url or f"{settings.frontend_url}/billing/cancel"
+        success_url = request.success_url or f"{settings.app_url}/billing/success"
+        cancel_url = request.cancel_url or f"{settings.app_url}/billing/cancel"
         
         return {
             "checkout_url": f"https://checkout.stripe.com/pay?price_id={price_id}&success_url={success_url}&cancel_url={cancel_url}",

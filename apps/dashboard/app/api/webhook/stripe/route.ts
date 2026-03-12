@@ -28,7 +28,7 @@ export async function POST(request: Request) {
 
   // Forward to FastAPI backend for processing
   try {
-    const apiUrl = process.env.API_URL || "http://localhost:8000";
+    const apiUrl = process.env.API_URL || "https://your-api-name.onrender.com";
     await fetch(`${apiUrl}/api/v1/billing/webhook`, {
       method: "POST",
       headers: {

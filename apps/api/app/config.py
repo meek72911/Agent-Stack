@@ -13,15 +13,16 @@ class Settings(BaseSettings):
     """AgentStack API settings -- single source of truth for all configuration."""
 
     # -- App --
+    node_env: str = "development"
     app_name: str = "AgentStack"
-    app_url: str = "http://localhost:3000"
-    api_url: str = "http://localhost:8000"
-    debug: bool = True
+    app_url: str = "https://your-app-name.vercel.app"
+    api_url: str = "https://your-api-name.onrender.com"
+    debug: bool = False
     log_level: str = "info"
-    cors_origins: str = "http://localhost:3000"
+    cors_origins: str = "https://your-app-name.vercel.app,http://localhost:3000,http://localhost:3002"
 
     # -- Database (Supabase Postgres) --
-    database_url: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/agentstack"
+    database_url: str = ""
     database_pool_size: int = 10
     database_max_overflow: int = 20
 
