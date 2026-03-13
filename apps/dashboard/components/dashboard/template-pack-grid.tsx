@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
-    Search, Zap, Bot, Code2, LineChart, HeadphonesIcon,
+    Search, Zap, Bot, Code2, LineChart, Headphones,
     GitBranch, ChevronRight, Loader2, CheckCircle2
 } from "lucide-react";
 import { toast } from "sonner";
@@ -29,7 +29,7 @@ const CATEGORY_ICONS: Record<string, React.ElementType> = {
     engineering: Code2,
     research: LineChart,
     sales: ChevronRight,
-    support: HeadphonesIcon,
+    support: Headphones,
     product: Bot,
     devops: GitBranch,
 };
