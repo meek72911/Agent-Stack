@@ -69,6 +69,10 @@
     -webkit-text-fill-color: transparent;
   }
 
+  .bg-gradient-premium {
+    background: linear-gradient(135deg, #F97316 0%, #FB923C 50%, #FDBA74 100%);
+  }
+
   .text-gradient-premium {
     background: linear-gradient(90deg, #F97316, #FB923C, #FDBA74, #FB923C, #F97316);
     background-size: 200% auto;

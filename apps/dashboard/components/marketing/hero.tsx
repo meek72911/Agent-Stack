@@ -88,7 +88,7 @@ export function Hero() {
     };
   }, []);
   return (
-    <section className="relative overflow-hidden pt-12 pb-20 lg:pt-16 lg:pb-28">
+    <section className="relative overflow-hidden pt-32 pb-20 lg:pt-48 lg:pb-28">
       {/* Premium gradient orbs */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full bg-[#F97316]/10 blur-[150px]" />

@@ -36,40 +36,42 @@ export function MarketingNavbar() {
             )}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center h-full gap-4">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-3 group">
+                    <Link href="/" className="flex items-center gap-3 group shrink-0">
                         <div className="h-10 w-10 flex items-center justify-center rounded-xl bg-gradient-to-br from-primary to-orange-600 shadow-glow-sm transition-transform group-hover:scale-110">
                             <Layers className="h-5 w-5 text-white" />
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-xl font-extrabold tracking-tight text-white">AgentStack</span>
-                            <span className="text-[10px] uppercase tracking-widest text-primary font-bold">Aura v3.0</span>
+                            <span className="text-xl font-extrabold tracking-tight text-white leading-none">AgentStack</span>
+                            <span className="text-[10px] uppercase tracking-widest text-primary font-bold mt-1">Aura v3.0</span>
                         </div>
                     </Link>
 
-                    {/* Desktop Navigation */}
-                    <nav className="hidden md:flex items-center gap-8">
-                        {navLinks.map((link) => (
-                            <Link 
-                                key={link.name} 
-                                href={link.href}
-                                className="text-sm font-medium text-muted-foreground hover:text-white transition-colors"
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
+                    {/* Desktop Navigation - Centered with flexible spacing */}
+                    <nav className="hidden lg:flex items-center justify-center flex-1 px-8">
+                        <div className="flex items-center gap-10">
+                            {navLinks.map((link) => (
+                                <Link 
+                                    key={link.name} 
+                                    href={link.href}
+                                    className="text-sm font-semibold text-muted-foreground hover:text-white transition-all hover:scale-105 active:scale-95 px-2"
+                                >
+                                    {link.name}
+                                </Link>
+                            ))}
+                        </div>
                     </nav>
 
                     {/* Auth Buttons */}
-                    <div className="hidden md:flex items-center gap-4">
+                    <div className="hidden md:flex items-center gap-3 shrink-0">
                         <Link href="/login">
-                            <Button variant="ghost" className="text-white hover:bg-white/5 font-semibold">
+                            <Button variant="ghost" className="text-white hover:bg-white/5 font-bold px-6">
                                 Log in
                             </Button>
                         </Link>
                         <Link href="/signup">
-                            <Button className="bg-gradient-premium text-[#07080C] font-bold border-none shadow-glow-sm hover:scale-[1.02] active:scale-95 transition-all">
+                            <Button className="bg-gradient-premium text-[#07080C] font-extrabold border-none shadow-glow-sm hover:shadow-glow hover:scale-[1.05] active:scale-95 transition-all px-8">
                                 Get Started
                             </Button>
                         </Link>
