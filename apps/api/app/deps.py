@@ -88,14 +88,18 @@ async def get_current_user(
         ) from exc
 
     # Fetch profile from profiles table for org/role info
-    profile_resp = (
-        await supabase.table("profiles")
-        .select("organization_id, role")
-        .eq("id", user.id)
-        .single()
-        .execute()
-    )
-    profile = profile_resp.data or {}
+    try:
+        profile_resp = (
+            await supabase.table("profiles")
+            .select("organization_id, role")
+            .eq("id", user.id)
+            .maybe_single()
+            .execute()
+        )
+        profile = profile_resp.data or {}
+    except Exception as exc:
+        print(f"Warning: Profile fetch failed for {user.id}: {exc}")
+        profile = {}
 
     return {
         "id": user.id,

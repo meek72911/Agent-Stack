@@ -5,7 +5,7 @@ import { TrendingUp, Zap, DollarSign, Clock, ArrowUpRight } from "lucide-react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useUsage, useUsageHistory } from "@/hooks/use-usage";
+import { useUsageCurrent, useUsageHistory } from "@/hooks/use-usage";
 
 function StatCard({
     title,
@@ -52,7 +52,7 @@ function StatCardSkeleton() {
 }
 
 export function UsageDashboard() {
-    const { usage, isLoading: usageLoading } = useUsage();
+    const { stats: usage, isLoading: usageLoading } = useUsageCurrent();
     const { history, isLoading: historyLoading } = useUsageHistory();
 
     // Generate placeholder chart data if real data is empty
