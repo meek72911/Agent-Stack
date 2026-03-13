@@ -123,7 +123,7 @@ export function Sidebar() {
     <motion.aside
       animate={{ width: sidebarCollapsed ? 80 : 260 }}
       transition={{ type: "spring", stiffness: 300, damping: 35 }}
-      className="sticky top-0 z-50 flex h-screen flex-col border-r border-white/5 bg-[#050505]/80 backdrop-blur-2xl shadow-2xl"
+      className="sticky top-0 z-50 flex h-screen flex-col border-r border-white/5 bg-[#050505]/95 backdrop-blur-md shadow-xl"
     >
       {/* Brand Header */}
       <div className="flex h-20 items-center gap-4 px-6">

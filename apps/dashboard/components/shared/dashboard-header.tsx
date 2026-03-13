@@ -42,7 +42,7 @@ export function DashboardHeader() {
     }
 
     return (
-        <header className="sticky top-0 z-40 flex h-14 items-center gap-4 border-b border-border bg-background/95 px-4 backdrop-blur supports-[backdrop-filter]:bg-background/60 lg:px-6">
+        <header className="sticky top-0 z-40 flex h-16 items-center gap-4 border-b border-white/[0.05] bg-background/98 px-4 backdrop-blur-md lg:px-8">
             {/* Premium Search */}
             <div className="relative hidden flex-1 max-w-lg sm:flex items-center group">
                 <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors pointer-events-none z-10" />
