@@ -25,7 +25,8 @@ export async function GET(request: NextRequest) {
             }
         } catch (err: any) {
             console.error("Auth callback crash:", err);
-            return NextResponse.redirect(new URL(`/login?error=Internal Server Error during auth`, request.url));
+            const errorMessage = err.message || "Unknown error during session exchange";
+            return NextResponse.redirect(new URL(`/login?error=${encodeURIComponent(errorMessage)}`, request.url));
         }
     }
 
