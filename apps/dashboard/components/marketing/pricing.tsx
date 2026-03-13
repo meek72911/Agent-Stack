@@ -9,9 +9,59 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 const plans = [
-  { name: "Free", description: "Perfect for getting started with AI workflows.", priceMonthly: 0, priceYearly: 0, cta: "Get Started Free", highlighted: false, features: [{ name: "2 workflows", included: true }, { name: "1,000 runs/month", included: true }, { name: "8 workflow templates", included: true }, { name: "Basic execution trace", included: true }, { name: "Community support", included: true }, { name: "BYOK API key support", included: false }, { name: "Real-time execution trace", included: false }, { name: "Priority support", included: false }] },
-  { name: "Pro", description: "For growing agencies and teams.", priceMonthly: 49, priceYearly: 490, cta: "Start Pro", saveAmount: 98, highlighted: true, features: [{ name: "Unlimited workflows", included: true }, { name: "10,000 runs/month", included: true }, { name: "82+ agent templates", included: true }, { name: "Real-time execution trace", included: true }, { name: "BYOK API key support", included: true }, { name: "Priority support", included: true }, { name: "White-label option", included: false }, { name: "Dedicated support", included: false }] },
-  { name: "Team", description: "For agencies with multiple clients.", priceMonthly: 149, priceYearly: 1490, cta: "Start Team", saveAmount: 298, highlighted: false, features: [{ name: "Everything in Pro", included: true }, { name: "White-label option", included: true }, { name: "Agency client management", included: true }, { name: "Custom branding", included: true }, { name: "Dedicated support", included: true }, { name: "Unlimited runs/month", included: true }] },
+  { 
+    name: "Free", 
+    description: "Perfect for getting started with AI workflows.", 
+    priceMonthly: 0, 
+    priceYearly: 0, 
+    cta: "Get Started Free", 
+    highlighted: false, 
+    replaces: "Basic manual research",
+    features: [
+      { name: "2 workflows", included: true }, 
+      { name: "500 runs/month", included: true }, 
+      { name: "Basic security scan", included: true },
+      { name: "Community support", included: true }, 
+      { name: "BYOK API key support", included: false }, 
+      { name: "Priority support", included: false }
+    ] 
+  },
+  { 
+    name: "Pro", 
+    description: "For growing agencies and teams.", 
+    priceMonthly: 49, 
+    priceYearly: 490, 
+    cta: "Start Pro", 
+    saveAmount: 98, 
+    highlighted: true, 
+    replaces: "$5,727/mo of tools",
+    features: [
+      { name: "All 9 workflows", included: true }, 
+      { name: "5,000 runs/month", included: true }, 
+      { name: "Full security audit", included: true }, 
+      { name: "CI/CD integration", included: true }, 
+      { name: "Security badge + trust page", included: true }, 
+      { name: "Priority support", included: true }, 
+    ] 
+  },
+  { 
+    name: "Team", 
+    description: "For agencies with multiple clients.", 
+    priceMonthly: 149, 
+    priceYearly: 1490, 
+    cta: "Start Team", 
+    saveAmount: 298, 
+    highlighted: false, 
+    replaces: "$10,000+/mo of tools",
+    features: [
+      { name: "Everything in Pro", included: true }, 
+      { name: "Multiple repos/projects", included: true },
+      { name: "White-label", included: true }, 
+      { name: "Custom security rules", included: true }, 
+      { name: "Compliance reporting", included: true }, 
+      { name: "Dedicated support", included: true }, 
+    ] 
+  },
 ];
 
 // Regional pricing multiplier (based on Paritydeals.com model)
@@ -71,12 +121,23 @@ export function Pricing() {
               )}
               <h3 className="text-xl font-bold tracking-tight" style={{ color: '#F1F5F9' }}>{plan.name}</h3>
               <p className="mt-2 text-sm text-[#94A3B8]">{plan.description}</p>
+              
+              {plan.replaces && (
+                <div className="mt-3">
+                  <Badge variant="outline" className="text-[10px] border-green-500/30 text-green-400 bg-green-500/5">
+                    Replaces: {plan.replaces}
+                  </Badge>
+                </div>
+              )}
+
               <div className="mt-6">
                 <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-extrabold" style={{ color: '#F1F5F9' }}>${annual ? plan.priceYearly : plan.priceMonthly}</span>
+                  <span className="text-4xl font-extrabold" style={{ color: '#F1F5F9' }}>
+                    ${annual ? (plan.name === "Free" ? 0 : Math.round(plan.priceYearly / 12)) : plan.priceMonthly}
+                  </span>
                   <span className="text-[#94A3B8]">/mo</span>
                 </div>
-                {annual && plan.saveAmount && <div className="mt-1 text-sm text-[#10B981] font-medium">Save ${plan.saveAmount}/year</div>}
+                {annual && plan.priceYearly > 0 && <div className="mt-1 text-xs text-[#94A3B8]">Billed annually (${plan.priceYearly}/yr)</div>}
               </div>
               <Button 
                 variant={plan.highlighted ? "default" : "outline"}

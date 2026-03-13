@@ -117,17 +117,35 @@ export function Hero() {
               </span>
             </motion.div>
             <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} className="font-display text-5xl font-extrabold leading-tight sm:text-6xl lg:text-7xl" style={{ letterSpacing: '-2px', color: '#F1F5F9' }}>
-              AI Agents for <span className="text-gradient-premium">Everyone.</span>
+              Your AI Product Team. <span className="text-gradient-premium">Ready in 60 seconds.</span>
             </motion.h1>
             <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }} className="mt-5 max-w-lg text-lg text-[#94A3B8]" style={{ lineHeight: '1.7' }}>
-              Students, teachers, creators, founders — anyone can build and run AI workflows with natural language. Zero code. 22+ templates. Powered by Claude.
+              9 free AI agent workflows that replace $50,000/yr of SaaS tools. One click. No code. IDE native.
             </motion.p>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-8 flex flex-wrap items-center gap-4">
-              <Link href="/signup"><Button size="lg" className="gap-2 text-base bg-[#F97316] text-[#07080C] font-extrabold shadow-premium hover:bg-[#FB923C] hover:scale-[1.02] transition-all duration-200" style={{ borderRadius: '12px', padding: '16px 32px' }}>Start for Free <ArrowRight className="h-5 w-5" /></Button></Link>
+              <Link href="/signup"><Button size="lg" className="gap-2 text-base bg-[#F97316] text-[#07080C] font-extrabold shadow-premium hover:bg-[#FB923C] hover:scale-[1.02] transition-all duration-200" style={{ borderRadius: '12px', padding: '16px 32px' }}>Start Free — No Credit Card <ArrowRight className="h-5 w-5" /></Button></Link>
               <Link href="#workflows"><Button variant="outline" size="lg" className="gap-2 text-base border-[#1C1F2E] text-[#94A3B8] hover:border-[#F97316]/50 hover:text-[#F1F5F9] transition-all duration-200" style={{ borderRadius: '12px', padding: '16px 32px' }}>View Workflows</Button></Link>
             </motion.div>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.4 }} className="mt-5 flex items-center gap-1 text-sm text-[#3F4558]">
-              <span className="text-[#10B981]">✓</span><span>Free plan</span><span className="mx-2">·</span><span className="text-[#10B981]">✓</span><span>No credit card</span><span className="mx-2">·</span><span className="text-[#10B981]">✓</span><span>AGPL-3.0 open source</span>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.4 }} className="mt-6 flex flex-col gap-3">
+              <div className="flex items-center gap-1 text-sm text-[#3F4558]">
+                <span className="text-[#10B981]">✓</span><span>Free plan</span><span className="mx-2">·</span><span className="text-[#10B981]">✓</span><span>No credit card</span><span className="mx-2">·</span><span className="text-[#10B981]">✓</span><span>AGPL-3.0 open source</span>
+              </div>
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] uppercase tracking-widest text-[#5F6782] font-bold">
+                <span>Replaces:</span>
+                <span className="text-[#F1F5F9]/50">Snyk</span>
+                <span className="text-white/10">•</span>
+                <span className="text-[#F1F5F9]/50">Semrush</span>
+                <span className="text-white/10">•</span>
+                <span className="text-[#F1F5F9]/50">Mabl</span>
+                <span className="text-white/10">•</span>
+                <span className="text-[#F1F5F9]/50">Gainsight</span>
+                <span className="text-white/10">•</span>
+                <span className="text-[#F1F5F9]/50">Taplio</span>
+                <span className="text-white/10">•</span>
+                <span className="text-[#F1F5F9]/50">Appcues</span>
+                <span className="text-white/10">•</span>
+                <span className="text-[#F1F5F9]/50">Instantly</span>
+              </div>
             </motion.div>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.5 }} className="mt-6 flex items-center gap-2">
               <a href="https://github.com/Meek72vibe/agentstack" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-lg border border-[#1C1F2E] bg-[#0D0F17] px-3 py-1.5 text-sm text-[#94A3B8]">

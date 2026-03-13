@@ -8,12 +8,13 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "AgentStack - AI Agent Management Platform",
+  title: "AgentStack - Your AI Product Team in 60 seconds",
   description:
-    "Build, deploy, and manage multi-agent AI systems. The Supabase of AI agents.",
+    "9 free AI agent workflows that replace $50,000/yr of SaaS tools. One click. No code. Built for solo founders and devs.",
+  keywords: ["AI agents", "SaaS replacement", "founder tools", "open source", "workflow automation"],
   openGraph: {
-    title: "AgentStack",
-    description: "Your AI product team, ready in 60 seconds.",
+    title: "AgentStack | Your AI Product Team",
+    description: "Build your team with 9 free AI agent workflows. Replaces Snyk, Semrush, Mabl and more.",
     url: "https://agentstack.ai",
     siteName: "AgentStack",
     type: "website",

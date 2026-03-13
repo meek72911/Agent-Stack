@@ -25,32 +25,35 @@ export function CTABanner() {
             <Sparkles className="h-7 w-7 text-primary" />
           </div>
 
-          <h2 className="mt-6 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Ready to Build the Future?
+          <h2 className="mt-6 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-[#F1F5F9]">
+            Build your team. <span className="text-gradient-premium">Start for Free.</span>
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            Join 2,000+ teams already shipping AI agents with AgentStack.
-            Start for free -- no credit card required.
+          <p className="mt-4 text-lg text-[#94A3B8]">
+            Built by a solo founder in Pune who was tired of paying $5k/mo for SaaS. 
+            Now it's yours. One click. Zero code. Direct signup.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link href="/signup">
-              <Button size="lg" className="gap-2 text-base">
-                Start Building Free
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
-            <Link href="/contact">
-              <Button variant="outline" size="lg" className="text-base">
-                Talk to Sales
+              <Button size="lg" className="gap-2 text-base bg-[#F97316] text-[#07080C] font-black shadow-glow-sm hover:bg-[#FB923C] px-8 h-14 uppercase tracking-tighter">
+                Start Free — No Credit Card
+                <ArrowRight className="h-5 w-5" />
               </Button>
             </Link>
           </div>
 
-          <p className="mt-6 text-sm text-muted-foreground">
-            Free tier includes 2 agents &bull; 1,000 executions/mo &bull;
-            No credit card needed
-          </p>
+          <div className="mt-12 flex flex-col items-center gap-2">
+            <p className="text-sm text-[#3F4558] italic border-t border-white/5 pt-6 max-w-md">
+              "AgentStack replaced $50K/yr of tools for my own startup. 
+              I made it open source so you can do the same."
+            </p>
+            <div className="flex items-center gap-2 mt-2">
+              <div className="h-6 w-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
+                <span className="text-[10px] font-bold text-[#F97316]">SK</span>
+              </div>
+              <span className="text-[10px] uppercase tracking-widest text-[#5F6782] font-bold">Sarthak K., Founder</span>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

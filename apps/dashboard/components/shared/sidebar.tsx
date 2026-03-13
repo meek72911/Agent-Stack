@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import {
   LayoutDashboard,
   Bot,
@@ -16,7 +17,9 @@ import {
   ChevronLeft,
   Layers,
   Puzzle,
+  Shield,
 } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
@@ -44,6 +47,7 @@ export function Sidebar() {
   const pathname = usePathname();
   const { sidebarCollapsed, setSidebarCollapsed } = useUIStore();
   const { stats } = useUsageCurrent();
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const mainNav: NavItem[] = [
     { label: "Overview", href: "/dashboard/overview", icon: LayoutDashboard },
@@ -167,8 +171,29 @@ export function Sidebar() {
         </div>
       </ScrollArea>
 
-      {/* Collapse Action Footer */}
-      <div className="p-4 bg-black/20 backdrop-blur-md">
+      {/* Admin Toggle & Collapse Action Footer */}
+      <div className="p-4 bg-black/20 backdrop-blur-md space-y-2">
+        <Button
+          variant="ghost"
+          size="sm"
+          className={cn(
+            "w-full h-11 justify-start px-4 rounded-xl transition-all border border-transparent hover:bg-white/5",
+            isAdmin && "text-primary bg-primary/5 border-primary/20 shadow-[0_0_20px_rgba(249,115,22,0.1)]"
+          )}
+          onClick={() => setIsAdmin(!isAdmin)}
+        >
+          <Shield className={cn("h-5 w-5", isAdmin ? "text-primary animate-pulse" : "text-muted-foreground")} />
+          {!sidebarCollapsed && (
+            <span className="ml-3 text-sm font-semibold flex-1 text-left">Admin Mode</span>
+          )}
+          {!sidebarCollapsed && (
+            <div className={cn(
+              "h-2 w-2 rounded-full",
+              isAdmin ? "bg-primary shadow-[0_0_10px_rgba(249,115,22,1)]" : "bg-muted-foreground/30"
+            )} />
+          )}
+        </Button>
+
         <Button
           variant="ghost"
           size="sm"

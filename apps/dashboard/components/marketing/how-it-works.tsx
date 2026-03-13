@@ -4,10 +4,9 @@ import { ListChecks, Pencil, Rocket, FileCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const steps = [
-  { number: "01", icon: ListChecks, title: "Choose a Workflow", description: "Pick from 82+ pre-built templates", color: "text-[#F97316]", bg: "bg-[#F97316]/10", border: "border-[rgba(249,115,22,0.3)]" },
-  { number: "02", icon: Pencil, title: "Enter Your Input", description: "Paste a topic, URL, company, or upload a file", color: "text-[#8B5CF6]", bg: "bg-[#8B5CF6]/10", border: "border-[rgba(139,92,246,0.3)]" },
-  { number: "03", icon: Rocket, title: "Agents Run Automatically", description: "Claude-powered agents execute each step live", color: "text-[#FBBF24]", bg: "bg-[#FBBF24]/10", border: "border-[rgba(251,191,36,0.3)]" },
-  { number: "04", icon: FileCheck, title: "Get Structured Results", description: "Download reports, copy outputs, share results", color: "text-[#10B981]", bg: "bg-[#10B981]/10", border: "border-[rgba(16,185,129,0.3)]" },
+  { number: "01", icon: ListChecks, title: "Pick a Skill", description: "Choose from 9 high-value agent workflows.", color: "text-[#F97316]", bg: "bg-[#F97316]/10", border: "border-[rgba(249,115,22,0.3)]" },
+  { number: "02", icon: Pencil, title: "Enter Input", description: "Paste your URL, repo, or idea. Zero technical setup.", color: "text-[#8B5CF6]", bg: "bg-[#8B5CF6]/10", border: "border-[rgba(139,92,246,0.3)]" },
+  { number: "03", icon: Rocket, title: "Get Results", description: "Agents run, analyze, and even auto-fix your code.", color: "text-[#10B981]", bg: "bg-[#10B981]/10", border: "border-[rgba(16,185,129,0.3)]" },
 ];
 
 export function HowItWorks() {
@@ -18,7 +17,7 @@ export function HowItWorks() {
           <span className="text-xs font-semibold tracking-[3px] text-[#F97316] uppercase">How It Works</span>
           <h2 className="mt-4 font-display text-3xl font-bold sm:text-4xl" style={{ color: '#F1F5F9' }}>From input to output in 4 steps</h2>
         </div>
-        <div className="relative mt-16 grid grid-cols-1 gap-8 md:grid-cols-4">
+        <div className="relative mt-16 grid grid-cols-1 gap-8 md:grid-cols-3">
           <div className="absolute top-[28px] left-[12%] right-[12%] hidden h-px md:block" style={{ background: 'linear-gradient(90deg, rgba(249,115,22,0.3) 0%, rgba(139,92,246,0.3) 50%, rgba(251,191,36,0.3) 100%)' }} />
           {steps.map((step, i) => {
             const Icon = step.icon;

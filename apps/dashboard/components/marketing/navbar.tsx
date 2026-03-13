@@ -20,10 +20,11 @@ export function MarketingNavbar() {
     }, []);
 
     const navLinks = [
-        { name: "Features", href: "#features" },
         { name: "Workflows", href: "#workflows" },
+        { name: "What We Replace", href: "#what-we-replace" },
+        { name: "Security", href: "#security" },
         { name: "Pricing", href: "#pricing" },
-        { name: "Open Source", href: "https://github.com/Meek72vibe/agentstack" },
+        { name: "Open Source", href: "#open-source" },
     ];
 
     return (
