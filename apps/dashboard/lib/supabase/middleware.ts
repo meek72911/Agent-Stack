@@ -36,7 +36,7 @@ export async function updateSession(request: NextRequest) {
 
   // Protected routes -- redirect to login if unauthenticated
   const protectedPaths = ["/agents", "/workflows", "/templates", "/community",
-    "/clients", "/analytics", "/settings"];
+    "/clients", "/analytics", "/settings", "/onboarding"];
   const isProtected = protectedPaths.some((p) => request.nextUrl.pathname.startsWith(p));
 
   if (isProtected && !user) {
