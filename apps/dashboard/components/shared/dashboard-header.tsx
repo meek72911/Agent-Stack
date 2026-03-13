@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Bell, Settings, LogOut, User, ChevronDown, Layers, Search } from "lucide-react";
+import { Bell, Settings, LogOut, User, ChevronDown, Layers, Search, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
