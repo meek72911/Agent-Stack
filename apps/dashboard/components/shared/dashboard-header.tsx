@@ -19,7 +19,7 @@ import { toast } from "sonner";
 
 export function DashboardHeader() {
     const router = useRouter();
-    const { user } = useUser();
+    const { user, profile } = useUser();
     const supabase = createClient();
 
     const initials =
@@ -56,6 +56,21 @@ export function DashboardHeader() {
             </div>
 
             <div className="ml-auto flex items-center gap-2">
+                {/* Admin Mode Toggle */}
+                {(profile?.role === "admin" || profile?.role === "owner") && (
+                    <Button
+                        variant="ghost"
+                        size="sm"
+                        className="hidden md:flex items-center gap-2 px-4 h-10 rounded-xl bg-primary/10 border border-primary/20 text-primary font-bold hover:bg-primary/20 hover:border-primary/30 active:scale-95 transition-all group"
+                        asChild
+                    >
+                        <Link href="/dashboard/admin">
+                            <Zap className="h-4 w-4 fill-primary animate-pulse" />
+                            <span className="tracking-tight">Admin Mode</span>
+                        </Link>
+                    </Button>
+                )}
+
                 {/* Notifications Dropdown */}
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
