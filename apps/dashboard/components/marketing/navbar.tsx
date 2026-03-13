@@ -35,55 +35,57 @@ export function MarketingNavbar() {
                     : "bg-transparent border-transparent py-5"
             )}
         >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center h-full gap-4">
-                    {/* Logo */}
-                    <Link href="/" className="flex items-center gap-3 group shrink-0">
-                        <div className="h-10 w-10 flex items-center justify-center rounded-xl bg-gradient-to-br from-primary to-orange-600 shadow-glow-sm transition-transform group-hover:scale-110">
-                            <Layers className="h-5 w-5 text-white" />
-                        </div>
-                        <div className="flex flex-col">
-                            <span className="text-xl font-extrabold tracking-tight text-white leading-none">AgentStack</span>
-                            <span className="text-[10px] uppercase tracking-widest text-primary font-bold mt-1">Aura v3.0</span>
-                        </div>
-                    </Link>
-
-                    {/* Desktop Navigation - Centered with flexible spacing */}
-                    <nav className="hidden lg:flex items-center justify-center flex-1 px-8">
-                        <div className="flex items-center gap-10">
-                            {navLinks.map((link) => (
-                                <Link 
-                                    key={link.name} 
-                                    href={link.href}
-                                    className="text-sm font-semibold text-muted-foreground hover:text-white transition-all hover:scale-105 active:scale-95 px-2"
-                                >
-                                    {link.name}
-                                </Link>
-                            ))}
-                        </div>
-                    </nav>
-
-                    {/* Auth Buttons */}
-                    <div className="hidden md:flex items-center gap-3 shrink-0">
-                        <Link href="/login">
-                            <Button variant="ghost" className="text-white hover:bg-white/5 font-bold px-6">
-                                Log in
-                            </Button>
-                        </Link>
-                        <Link href="/signup">
-                            <Button className="bg-gradient-premium text-[#07080C] font-extrabold border-none shadow-glow-sm hover:shadow-glow hover:scale-[1.05] active:scale-95 transition-all px-8">
-                                Get Started
-                            </Button>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+                <div className="grid grid-cols-2 lg:grid-cols-3 items-center h-full">
+                    {/* Column 1: Logo */}
+                    <div className="flex justify-start">
+                        <Link href="/" className="flex items-center gap-3 group shrink-0">
+                            <div className="h-10 w-10 flex items-center justify-center rounded-xl bg-[#F97316] shadow-glow-sm transition-transform group-hover:scale-110">
+                                <Layers className="h-5 w-5 text-[#07080C]" />
+                            </div>
+                            <div className="flex flex-col">
+                                <span className="text-xl font-extrabold tracking-tight text-white leading-none">AgentStack</span>
+                                <span className="text-[10px] uppercase tracking-widest text-[#F97316] font-bold mt-1">Aura v3.0</span>
+                            </div>
                         </Link>
                     </div>
 
-                    {/* Mobile Menu Button */}
-                    <button 
-                        className="md:hidden p-2 text-white"
-                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    >
-                        {mobileMenuOpen ? <X /> : <Menu />}
-                    </button>
+                    {/* Column 2: Desktop Navigation (Hidden on Tablet/Mobile) */}
+                    <nav className="hidden lg:flex items-center justify-center gap-8">
+                        {navLinks.map((link) => (
+                            <Link 
+                                key={link.name} 
+                                href={link.href}
+                                className="text-sm font-bold text-muted-foreground hover:text-white transition-all hover:scale-105"
+                            >
+                                {link.name}
+                            </Link>
+                        ))}
+                    </nav>
+
+                    {/* Column 3: Auth Buttons & Mobile Toggle */}
+                    <div className="flex justify-end items-center gap-3">
+                        <div className="hidden md:flex items-center gap-3">
+                            <Link href="/login">
+                                <Button variant="ghost" className="text-white hover:bg-white/5 font-bold px-4">
+                                    Log in
+                                </Button>
+                            </Link>
+                            <Link href="/signup">
+                                <Button className="bg-[#F97316] text-[#07080C] font-black border-none shadow-premium hover:bg-[#FB923C] hover:scale-105 active:scale-95 transition-all px-8 h-11">
+                                    Get Started
+                                </Button>
+                            </Link>
+                        </div>
+                        
+                        {/* Mobile Menu Button */}
+                        <button 
+                            className="lg:hidden p-2 text-white hover:bg-white/5 rounded-lg transition-colors"
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        >
+                            {mobileMenuOpen ? <X /> : <Menu />}
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -113,7 +115,7 @@ export function MarketingNavbar() {
                             </Button>
                         </Link>
                         <Link href="/signup" onClick={() => setMobileMenuOpen(false)}>
-                            <Button className="w-full bg-primary text-black font-bold">
+                            <Button className="w-full bg-[#F97316] text-[#07080C] font-black h-11">
                                 Get Started
                             </Button>
                         </Link>

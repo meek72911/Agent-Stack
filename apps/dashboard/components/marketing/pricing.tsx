@@ -83,7 +83,7 @@ export function Pricing() {
                 className={cn(
                   "mt-8 transition-all duration-300 hover:scale-[1.02]",
                   plan.highlighted 
-                    ? "bg-gradient-premium text-[#07080C] font-bold shadow-glow-sm hover:shadow-glow border-none" 
+                    ? "bg-[#F97316] text-[#07080C] font-extrabold shadow-glow-sm hover:bg-[#FB923C] border-none" 
                     : "border-white/10 bg-white/5 text-white hover:border-primary/50 hover:bg-white/10"
                 )} 
                 style={{ borderRadius: '12px', padding: '14px 24px' }} 
