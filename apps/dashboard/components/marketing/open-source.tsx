@@ -32,12 +32,12 @@ export function OpenSource() {
             </div>
 
             <div className="flex flex-wrap gap-4">
-              <a href="https://github.com/Meek72vibe/agentstack" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/meek72911/Agent-Stack" target="_blank" rel="noopener noreferrer">
                 <Button size="lg" className="gap-2 bg-white text-black font-bold hover:bg-white/90">
                   <Github className="h-5 w-5" /> Star on GitHub
                 </Button>
               </a>
-              <a href="https://github.com/Meek72vibe/agentstack" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/meek72911/Agent-Stack" target="_blank" rel="noopener noreferrer">
                 <Button size="lg" variant="outline" className="gap-2 border-white/10 text-white hover:bg-white/5 font-bold">
                   Read the Source
                 </Button>

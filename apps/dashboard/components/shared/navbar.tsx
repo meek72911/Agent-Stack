@@ -61,7 +61,7 @@ export function Navbar({ variant = "dashboard" }: NavbarProps) {
               { href: "/#workflows", label: "Workflows" },
               { href: "/#pricing", label: "Pricing" },
               { href: "/docs", label: "Docs" },
-              { href: "https://github.com/Meek72vibe/agentstack", label: "GitHub" },
+              { href: "https://github.com/meek72911/Agent-Stack", label: "GitHub" },
             ].map((link) => (
               <Link key={link.href} href={link.href} className="text-sm font-medium text-[#94A3B8] transition-all duration-200 hover:text-[#F1F5F9] hover:scale-[1.02]" target={link.href.startsWith("http") ? "_blank" : "_self"}>
                 {link.label}
