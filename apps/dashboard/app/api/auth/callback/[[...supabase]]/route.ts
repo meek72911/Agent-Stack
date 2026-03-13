@@ -1,44 +1,33 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createServerClient as createSupabase } from "@supabase/ssr";
-import { cookies } from "next/headers";
+import { createServerClient } from "@/lib/supabase/server";
 
-/**
- * OAuth callback handler — Supabase redirects here after Google/GitHub auth.
- * Exchanges the auth code for a session and redirects to onboarding or dashboard.
- */
 export async function GET(request: NextRequest) {
     const requestUrl = new URL(request.url);
     const code = requestUrl.searchParams.get("code");
     const next = requestUrl.searchParams.get("next") ?? "/dashboard";
 
     if (code) {
-        const cookieStore = cookies();
-        const supabase = createSupabase(
-            process.env.NEXT_PUBLIC_SUPABASE_URL!,
-            process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-            {
-                cookies: {
-                    get(name: string) { return cookieStore.get(name)?.value; },
-                    set(name: string, value: string, options: Record<string, unknown>) {
-                        try { cookieStore.set({ name, value, ...options as any }); } catch { /* ignore */ }
-                    },
-                    remove(name: string, options: Record<string, unknown>) {
-                        try { cookieStore.set({ name, value: "", ...options as any }); } catch { /* ignore */ }
-                    },
-                },
-            }
-        );
+        try {
+            const supabase = createServerClient();
+            const { data, error } = await supabase.auth.exchangeCodeForSession(code);
 
-        const { data, error } = await supabase.auth.exchangeCodeForSession(code);
-
-        if (!error && data.user) {
-            // Check if new user — redirect to onboarding
-            const isNew = !data.user.user_metadata?.onboarded;
-            if (isNew) {
-                return NextResponse.redirect(new URL("/onboarding", requestUrl.origin));
+            if (error) {
+                console.error("Auth callback exchange error:", error);
+                return NextResponse.redirect(new URL(`/login?error=${encodeURIComponent(error.message)}`, request.url));
             }
+
+            if (data.user) {
+                // Check if new user — redirect to onboarding
+                const isNew = !data.user.user_metadata?.onboarded;
+                if (isNew) {
+                    return NextResponse.redirect(new URL("/onboarding", request.url));
+                }
+            }
+        } catch (err: any) {
+            console.error("Auth callback crash:", err);
+            return NextResponse.redirect(new URL(`/login?error=Internal Server Error during auth`, request.url));
         }
     }
 
-    return NextResponse.redirect(new URL(next, requestUrl.origin));
+    return NextResponse.redirect(new URL(next, request.url));
 }
