@@ -9,9 +9,10 @@ This skill provides a framework-agnostic system for automated UI health, accessi
 
 ## 🌍 Universal Features:
 1.  **Auto-Discovery**: Crawls `sitemap.xml` to find pages automatically. No more hardcoded URL lists.
-2.  **External Config**: Driven by `agentstack-test.config.json` for easy environment switching.
-3.  **Language-Agnostic Healing**: The `heal.js` script detects your project language (Python, Ruby, PHP, Node) and writes the fix prompt in that language's context.
-4.  **Baseline Snapshots**: Visual regression for any UI, regardless of framework.
+2.  **Redirection Integrity Audit**: Automatically verifies that URLs (like `/register` or `/dashboard`) correctly point to their new destinations.
+3.  **External Config**: Driven by `agentstack-test.config.json` for easy environment switching.
+4.  **Language-Agnostic Healing**: The `heal.js` script detects your project language (Python, Ruby, PHP, Node) and writes the fix prompt in that language's context.
+5.  **Baseline Snapshots**: Visual regression for any UI, regardless of framework.
 
 ## 🛠️ Setup & Configuration:
 

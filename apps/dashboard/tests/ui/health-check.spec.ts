@@ -118,6 +118,21 @@ test.describe('Universal Framework Scanner', () => {
       }
     }
 
+    // ── New: Redirect Integrity Audit ──
+    if (testConfig.testing.redirectAudit) {
+      console.log(`\n🚦 Auditing Redirection Integrity...`);
+      for (const rule of testConfig.testing.redirectAudit) {
+        await page.goto(rule.from, { waitUntil: 'domcontentloaded' }).catch(() => null);
+        const finalUrl = page.url();
+        const success = finalUrl.endsWith(rule.to);
+        
+        console.log(`  ${success ? '✅' : '❌'} Redirect: ${rule.from} -> ${rule.to} (Actual: ${new URL(finalUrl).pathname})`);
+        if (!success) {
+          BROKEN.push(`Redirect Failure: ${rule.from} expected to reach ${rule.to} but landed on ${new URL(finalUrl).pathname}`);
+        }
+      }
+    }
+
     // G. Generate Universal Artifacts
     const reportsDir = 'tests/reports';
     if (!fs.existsSync(reportsDir)) fs.mkdirSync(reportsDir, { recursive: true });

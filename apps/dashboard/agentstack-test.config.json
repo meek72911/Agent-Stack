@@ -22,7 +22,11 @@
     "a11y": true,
     "visual": true,
     "networkEmulation": "Fast 3G",
-    "maxDiscoveryPages": 20
+    "maxDiscoveryPages": 20,
+    "redirectAudit": [
+      { "from": "/register", "to": "/signup" },
+      { "from": "/dashboard", "to": "/dashboard/overview" }
+    ]
   },
   "framework": "auto"
 }

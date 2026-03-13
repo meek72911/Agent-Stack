@@ -17,20 +17,23 @@ async function fetcher<T>(endpoint: string): Promise<T> {
   return res.json();
 }
 
-export function useUsageCurrent() {
-  const { data, error, isLoading, mutate } = useSWR<any>('/usage/current', fetcher);
+export function useExecutions(limit = 10) {
+  const { data, error, isLoading, mutate } = useSWR<any>(`/executions?limit=${limit}`, fetcher);
   return { 
-    stats: data, 
+    executions: data?.executions ?? [], 
+    total: data?.total ?? 0,
     error, 
     isLoading, 
     mutate 
   };
 }
 
-export function useUsageHistory(days = 30) {
-  const { data, error, isLoading } = useSWR<any>(`/usage/history?days=${days}`, fetcher);
+export function useExecution(id: string) {
+  const { data, error, isLoading } = useSWR<any>(id ? `/executions/${id}` : null, fetcher);
   return { 
-    history: data?.daily_data ?? [], 
+    execution: data?.execution, 
+    steps: data?.steps ?? [],
+    tool_calls: data?.tool_calls ?? [],
     error, 
     isLoading 
   };
