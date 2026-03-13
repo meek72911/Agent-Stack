@@ -1,168 +1,86 @@
 #!/usr/bin/env node
 /**
- * AgentStack Self-Heal Script
+ * AgentStack UNIVERSAL Self-Healer
  * 
- * Reads failed Playwright test results
- * Generates a fix prompt for your IDE AI
- * No API key needed — uses your IDE's Claude
- * 
- * Run: node tests/heal.js
+ * Functions:
+ * 1. Detects project language/framework automatically
+ * 2. Parses universal test reports
+ * 3. Generates fix prompts in the correct language (Python, Ruby, Node, PHP)
  */
 
 const fs = require('fs');
 const path = require('path');
 
-const REPORT_PATH = 'tests/reports/results.json';
+const REPORT_PATH = 'tests/reports/universal-report.json';
 const HEAL_PROMPT_PATH = 'tests/reports/HEAL-PROMPT.md';
 
-// ── Read test results ─────────────────────────────────────────
-function readResults() {
+function detectFramework() {
+  const root = path.join(process.cwd(), '../..'); // Assuming call from apps/dashboard
+  
+  if (fs.existsSync(path.join(root, 'package.json'))) return { lang: 'JavaScript/TypeScript', framework: 'Node.js/Next.js/Nuxt' };
+  if (fs.existsSync(path.join(root, 'requirements.txt')) || fs.existsSync(path.join(root, 'pyproject.toml'))) return { lang: 'Python', framework: 'Django/FastAPI/Flask' };
+  if (fs.existsSync(path.join(root, 'composer.json'))) return { lang: 'PHP', framework: 'Laravel/Symfony' };
+  if (fs.existsSync(path.join(root, 'Gemfile'))) return { lang: 'Ruby', framework: 'Rails' };
+  
+  return { lang: 'Unknown', framework: 'Generic Web' };
+}
+
+function main() {
+  console.log('🔍 Running Universal Healer...');
+
   if (!fs.existsSync(REPORT_PATH)) {
-    console.log('❌ No test results found. Run: npx playwright test first');
+    console.log('❌ No universal report found. Run tests first.');
     process.exit(1);
   }
-  return JSON.parse(fs.readFileSync(REPORT_PATH, 'utf8'));
-}
 
-// ── Extract failures ──────────────────────────────────────────
-function extractFailures(results) {
-  const failures = [];
+  const report = JSON.parse(fs.readFileSync(REPORT_PATH, 'utf8'));
+  const frameworkInfo = detectFramework();
+  
+  console.log(`📡 Detected Project: ${frameworkInfo.lang} (${frameworkInfo.framework})`);
 
-  if (!results.suites) return failures;
-
-  function walkSuites(suites) {
-    for (const suite of suites) {
-      if (suite.specs) {
-        for (const spec of suite.specs) {
-          for (const test of spec.tests || []) {
-            for (const result of test.results || []) {
-              if (result.status === 'failed') {
-                failures.push({
-                  title: spec.title,
-                  file: spec.file,
-                  error: result.error?.message || 'Unknown error',
-                  snippet: result.error?.snippet || '',
-                  duration: result.duration,
-                });
-              }
-            }
-          }
-        }
-      }
-      if (suite.suites) {
-        walkSuites(suite.suites);
-      }
-    }
-  }
-
-  walkSuites(results.suites);
-  return failures;
-}
-
-// ── Generate heal prompt for IDE ──────────────────────────────
-function generateHealPrompt(failures) {
-  if (failures.length === 0) {
-    return `# ✅ All Tests Passing!\nNo healing needed. Great job.`;
-  }
-
-  const prompt = `# 🔧 AgentStack Self-Heal Prompt
-Generated: ${new Date().toISOString()}
-Failed Tests: ${failures.length}
-
-## Instructions for IDE AI
-Read this file and fix all failing Playwright tests.
-For each failure:
-1. Read the test file at the given path
-2. Read the actual component/page it's testing
-3. Understand WHY it failed (UI change? Missing element? API change?)
-4. Fix the test to match current UI — don't just suppress the error
-5. If it's a real bug (not a test issue) — mark it as TODO with explanation
-
----
-
-## Failing Tests
-
-${failures.map((f, i) => `
-### Failure ${i + 1}: ${f.title}
-**File:** ${f.file}
-**Error:** ${f.error}
-${f.snippet ? `**Code:**\n\`\`\`\n${f.snippet}\n\`\`\`` : ''}
-
-**Possible causes:**
-- Element selector changed (button text renamed?)
-- Element no longer exists (feature removed?)
-- API endpoint changed (check apps/api/app/routers/)
-- Page route changed (check apps/dashboard/app/)
-- Auth required (need to login first?)
-
-**Fix approach:**
-1. Check the actual current HTML of the page
-2. Find the correct selector or element
-3. Update the test in ${f.file}
-`).join('\n---\n')}
-
----
-
-## After Fixing
-Run: \`npx playwright test\`
-All tests should pass.
-If a test still fails — it's a real bug, not a test issue.
-`;
-
-  return prompt;
-}
-
-// ── DOM Snapshot helper ───────────────────────────────────────
-function generateSnapshotPrompt() {
-  return `
----
-
-## How to Capture DOM for Healing
-If you need to see current page HTML, add this to the failing test:
-
-\`\`\`typescript
-// Add temporarily to debug
-const html = await page.content();
-fs.writeFileSync('tests/reports/dom-snapshot.html', html);
-\`\`\`
-
-Then read dom-snapshot.html to find correct selectors.
-`;
-}
-
-// ── Main ──────────────────────────────────────────────────────
-function main() {
-  console.log('🔍 Reading test results...\n');
-
-  const results = readResults();
-  const failures = extractFailures(results);
-
-  console.log(`Found ${failures.length} failing tests\n`);
-
-  if (failures.length === 0) {
-    console.log('✅ All tests passing! Nothing to heal.');
+  if (report.stats.broken === 0 && report.stats.a11y === 0) {
+    console.log('✅ UI is healthy. No healing needed.');
     return;
   }
 
-  // Generate heal prompt
-  const prompt = generateHealPrompt(failures) + generateSnapshotPrompt();
+  const prompt = `# 🔧 UNIVERSAL HEALER PROMPT
+Generated: ${new Date().toISOString()}
+Target Project: ${report.project}
+Detected Stack: ${frameworkInfo.lang} | ${frameworkInfo.framework}
+
+## 🚨 MISSION: Fix UI Baseline Failures
+You are an expert engineer specialized in **${frameworkInfo.lang}**. 
+Fix the following issues in the codebase.
+
+### Instructions:
+1. **Analyze**: Review the failures below.
+2. **Context**: Use the detected framework (${frameworkInfo.framework}) patterns to find the relevant files.
+3. **Fix**: 
+   - **Functional/HTTP Errors**: Check the backend routes or frontend page logic.
+   - **Accessibility**: Fix HTML semantics (aria-labels, contrast, alt tags).
+   - **Consistency**: Update the test baseline ONLY if the UI design was intentional.
+
+---
+
+## 🛑 FAILURES
+### Critical Breakages (${report.stats.broken})
+${report.results.broken.map(b => `- ❌ ${b}`).join('\n')}
+
+### A11y Violations (${report.stats.a11y})
+${report.results.a11y.map(a => `- ♿ [${a.page}] ${a.title} (${a.impact})`).join('\n')}
+
+### API Failures (${report.stats.api})
+${report.results.api.map(f => `- 📡 [${f.page}] ${f.status} -> ${f.url}`).join('\n')}
+
+---
+
+## NEXT STEP:
+Say: "I am ready to heal the **${frameworkInfo.lang}** codebase. Reading files now..."
+`;
+
   fs.writeFileSync(HEAL_PROMPT_PATH, prompt);
-
-  console.log(`📝 Heal prompt saved to: ${HEAL_PROMPT_PATH}`);
-  console.log('\n─────────────────────────────────────');
-  console.log('NEXT STEP:');
-  console.log('1. Open your IDE');
-  console.log('2. Say: "Read tests/reports/HEAL-PROMPT.md and fix all failing tests"');
-  console.log('3. Run: npx playwright test');
-  console.log('4. Repeat until all pass ✅');
-  console.log('─────────────────────────────────────\n');
-
-  // Print summary
-  console.log('Failing tests:');
-  failures.forEach((f, i) => {
-    console.log(`  ${i + 1}. ${f.title}`);
-    console.log(`     Error: ${f.error.split('\n')[0]}`);
-  });
+  console.log(`\n📝 PROMPT GENERATED: ${HEAL_PROMPT_PATH}`);
+  console.log(`Stack-specific instructions injected for ${frameworkInfo.lang}.`);
 }
 
 main();

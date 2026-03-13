@@ -52,6 +52,11 @@ const nextConfig = {
         destination: "/signup",
         permanent: true,
       },
+      {
+        source: "/dashboard",
+        destination: "/dashboard/overview",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {

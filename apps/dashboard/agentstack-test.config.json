@@ -1,0 +1,28 @@
+{
+  "project": "AgentStack",
+  "baseURL": "http://localhost:3000",
+  "discovery": {
+    "mode": "auto",
+    "sitemapPath": "/sitemap.xml",
+    "fallbackPages": [
+      "/",
+      "/login",
+      "/signup",
+      "/pricing"
+    ]
+  },
+  "auth": {
+    "loginPath": "/login",
+    "usernameSelector": "input[type='email']",
+    "passwordSelector": "input[type='password']",
+    "submitSelector": "button[type='submit'], button:has-text('Sign in')",
+    "successURL": "/dashboard"
+  },
+  "testing": {
+    "a11y": true,
+    "visual": true,
+    "networkEmulation": "Fast 3G",
+    "maxDiscoveryPages": 20
+  },
+  "framework": "auto"
+}
