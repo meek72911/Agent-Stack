@@ -9,6 +9,8 @@ AgentStack lets you build production-ready AI workflows by bringing your own API
 
 - **Workflow-First Design**: Users interact with goal-oriented workflows; AgentStack handles the complex multi-agent orchestration internally.
 - **BYOK (Bring Your Own Key)**: Support for OpenAI, Anthropic, Gemini, Groq, and more via LiteLLM.
+- **SSE Streaming**: Real-time token-by-token streaming for a snappy UI experience.
+- **RAG & File Support**: Upload PDFs, Docx, or text files to ground your agents in custom data.
 - **Observability**: Step-by-step execution timeline, token usage, and cost tracking.
 - **Agency Ready**: Multitenant workspaces, usage reports, and workflow cloning.
 - **Self-Hostable**: Single `docker-compose up` to run your own instances.
@@ -27,7 +29,7 @@ agentstack/
 ├── supabase/
 │   ├── config.toml    # Local Supabase config
 │   ├── migrations/    # Database schema migrations
-│   └── seed.sql       # Seed data (plans, templates)
+│   └── seeds/         # Seed data (plans, 82 agent templates)
 └── infrastructure/
     ├── docker-compose.yml
     └── Dockerfile.*
@@ -44,7 +46,7 @@ agentstack/
 | Auth | Supabase Auth (JWT, OAuth: GitHub, Google) |
 | Payments | Stripe (subscriptions, usage-based billing) |
 | Storage | Cloudflare R2 (zero egress) |
-| Infra | Docker, Railway, Turborepo |
+| Infra | Docker, Railway, Render, Turborepo |
 
 ## Quick Start
 
@@ -53,24 +55,24 @@ agentstack/
 - Node.js 20+
 - pnpm 8+
 - Python 3.12+
-- Docker (for local Supabase)
+- Docker (for local Supabase/Redis)
 
-### Setup
+### Local Setup
 
 ```bash
 # Install dependencies
 pnpm install
 
-# Copy environment variables
+# Setup Backend Environment
+cd apps/api
 cp .env.example .env
 
-# Start local Supabase
-npx supabase start
+# Setup Frontend Environment
+cd ../dashboard
+cp .env.example .env.local
 
-# Run database migrations
-npx supabase db reset
-
-# Start development servers
+# Start development servers (from root)
+cd ../..
 pnpm dev
 ```
 
@@ -79,41 +81,29 @@ This starts:
 - API: http://localhost:8000
 - Supabase Studio: http://localhost:54323
 
-### Development Commands
+### Deployment
 
-```bash
-pnpm dev          # Start all services
-pnpm build        # Build all packages and apps
-pnpm lint         # Lint entire monorepo
-pnpm typecheck    # TypeScript type checking
-pnpm clean        # Clean all build artifacts
-```
+AgentStack is designed to be deployed on **Vercel** (Frontend), **Render/Railway** (Backend), and **Supabase** (Database).
 
-## Plans & Pricing
-
-| Feature | Free | Pro ($49/mo) | Team ($149/mo) |
-|---------|------|-------------|---------------|
-| Agents | 3 | Unlimited | Unlimited |
-| Workflows | 2 | 50 | Unlimited |
-| Workspaces | 1 | 5 | Unlimited |
-| White-label | No | No | Yes (v1.2) |
-| Support | Community | Priority | 24/7 Dedicated |
+1. **Database**: Push migrations to Supabase using `npx supabase db push`.
+2. **Backend**: Deploy `apps/api` to Render. Ensure `DATABASE_URL` and `SUPABASE_SECRET_KEY` are set.
+3. **Frontend**: Deploy `apps/dashboard` to Vercel.
 
 ## Project Structure
 
 ### API (`apps/api/`)
 
-- `app/routers/` -- FastAPI route handlers
-- `app/services/` -- Business logic layer (Orchestration Engine, R2 Service)
+- `app/routers/` -- FastAPI route handlers (Auth, Agents, Workflows, Executions, Files)
+- `app/services/` -- Business logic layer (Orchestration Engine, R2 Service, File Extractor)
 - `app/schemas/` -- Pydantic request/response models
 - `app/middleware/` -- Auth, rate limiting, plan enforcement
 
 ### Dashboard (`apps/dashboard/`)
 
 - `app/` -- Next.js App Router pages
-- `components/` -- React components (Workflows, Agents, Billing)
+- `components/` -- React components (Workflows UI, Agent Builder, Command Palette)
 - `stores/` -- Zustand state management
-- `hooks/` -- Custom React hooks
+- `hooks/` -- Custom React hooks for data fetching (SWR)
 - `lib/` -- Utilities and API client (Supabase SSR)
 
 ## License

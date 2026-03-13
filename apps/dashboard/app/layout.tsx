@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AgentStack | Your AI Product Team",
     description: "Build your team with 9 free AI agent workflows. Replaces Snyk, Semrush, Mabl and more.",
-    url: "https://agentstack.ai",
+    url: "https://agentstack7.vercel.app",
     siteName: "AgentStack",
     type: "website",
   },

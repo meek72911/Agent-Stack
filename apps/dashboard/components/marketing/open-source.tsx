@@ -22,7 +22,7 @@ export function OpenSource() {
             
             <div className="grid grid-cols-2 gap-6 mb-8">
               <div>
-                <div className="text-2xl font-bold text-white">128</div>
+                <div className="text-2xl font-bold text-white">0</div>
                 <div className="text-sm text-[#5F6782]">GitHub Stars</div>
               </div>
               <div>
