@@ -136,134 +136,42 @@ export function Hero() {
               </a>
             </motion.div>
           </div>
-          <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.4 }} className="relative" ref={containerRef}>
+          <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.4 }} className="relative perspective-2000" ref={containerRef}>
             {/* Parallax background orbs */}
-            <div ref={orb1Ref} className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-gradient-to-r from-orange-500/30 to-amber-500/20 blur-[120px]" />
-            <div ref={orb2Ref} className="absolute -bottom-40 -left-32 h-80 w-80 rounded-full bg-gradient-to-r from-violet-500/20 to-purple-500/30 blur-[100px]" />
-            <div ref={orb3Ref} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-48 w-48 rounded-full bg-gradient-to-r from-orange-500/20 to-amber-500/10 blur-[80px]" />
+            <div ref={orb1Ref} className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-gradient-to-r from-orange-500/30 to-amber-500/20 blur-[120px] pointer-events-none" />
+            <div ref={orb2Ref} className="absolute -bottom-40 -left-32 h-80 w-80 rounded-full bg-gradient-to-r from-violet-500/20 to-purple-500/30 blur-[100px] pointer-events-none" />
             
-            <div
-              ref={cardRef}
-              className="relative animate-float overflow-hidden rounded-3xl border border-[rgba(249,115,22,0.3)] shadow-premium"
-              style={{
-                backdropFilter: 'blur(10px)',
-                transformStyle: 'preserve-3d',
-              }}
-            >
-              {/* Gradient border top */}
-              <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(249,115,22,0.6), rgba(139,92,246,0.3), rgba(249,115,22,0.6), transparent)' }} />
-              
-              {/* Window controls */}
-              <div className="flex h-12 items-center justify-between gap-2 border-b border-[#1C1F2E] bg-[#0D0F17]/90 px-4">
-                <div className="flex items-center gap-2">
-                  <div className="h-3 w-3 rounded-full bg-[#FF5F56]" />
-                  <div className="h-3 w-3 rounded-full bg-[#FFBD2E]" />
-                  <div className="h-3 w-3 rounded-full bg-[#27C93F]" />
-                </div>
-                <span className="text-xs text-[#3F4558] font-mono">AgentStack Dashboard</span>
-                <div className="w-12" />
-              </div>
-              
-              {/* Dashboard Content */}
-              <div className="aspect-[16/10] w-full bg-gradient-to-br from-[#0D0F17] via-[#13161F] to-[#0D0F17] p-5">
-                <div className="grid h-full grid-cols-4 gap-4">
-                  {/* Sidebar */}
-                  <div className="col-span-1 rounded-xl bg-[#0D0F17] border border-[#1C1F2E] p-4 space-y-3">
-                    <div className="flex items-center gap-2 mb-4">
-                      <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center">
-                        <span className="text-xs font-bold text-[#07080C]">A</span>
-                      </div>
-                      <span className="text-xs text-[#94A3B8]">AgentStack</span>
-                    </div>
-                    <div className="h-2 w-20 rounded bg-[#1C1F2E]" />
-                    <div className="h-2 w-full rounded bg-[#1C1F2E]" />
-                    <div className="h-2 w-3/4 rounded bg-[#1C1F2E]" />
-                    <div className="mt-4 space-y-2">
-                      <div className="flex items-center gap-2">
-                        <div className="h-2 w-2 rounded-full bg-[#F97316]" />
-                        <div className="h-2 w-16 rounded bg-[#1C1F2E]" />
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="h-2 w-2 rounded-full bg-[#8B5CF6]" />
-                        <div className="h-2 w-14 rounded bg-[#1C1F2E]" />
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="h-2 w-2 rounded-full bg-[#10B981]" />
-                        <div className="h-2 w-12 rounded bg-[#1C1F2E]" />
-                      </div>
-                    </div>
+            <div ref={cardRef} className="relative z-10">
+              {/* MacBook Screen Container */}
+              <div className="relative mx-auto rounded-[1.5rem] bg-[#1a1a1a] p-2 shadow-2xl ring-1 ring-white/10 overflow-hidden group">
+                {/* Metallic Frame / Bezel */}
+                <div className="relative rounded-[1.2rem] bg-[#020202] pt-6 pb-2 px-1 shadow-inner border border-white/5">
+                  {/* Camera Notch Area */}
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 h-4 w-24 bg-black rounded-b-xl z-50 flex items-center justify-center gap-2 px-3">
+                    <div className="h-1 w-1 rounded-full bg-blue-500/40" />
+                    <div className="h-1.5 w-1.5 rounded-full bg-white/5" />
                   </div>
-                  
-                  {/* Main Content */}
-                  <div className="col-span-3 space-y-4">
-                    {/* Header */}
-                    <div className="flex items-center justify-between">
-                      <div className="h-6 w-32 rounded bg-[#1C1F2E]" />
-                      <div className="flex gap-2">
-                        <div className="h-8 w-24 rounded-lg bg-[#F97316]/30" />
-                        <div className="h-8 w-8 rounded-lg bg-[#1C1F2E]" />
-                      </div>
+
+                  {/* The actual Screen Content (Kanban Board) */}
+                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-[#0D0F17]">
+                    <div className="absolute inset-0 glow-board">
+                      <KanbanBoard />
                     </div>
                     
-                    {/* Cards Row */}
-                    <div className="grid grid-cols-3 gap-4 h-[calc(100%-40px)]">
-                      {/* Card 1 */}
-                      <div className="rounded-xl bg-[#0D0F17] border border-[#1C1F2E] p-3">
-                        <div className="flex items-center gap-2 mb-3">
-                          <div className="h-3 w-3 rounded-full bg-[#F97316]" />
-                          <div className="h-2 w-16 rounded bg-[#1C1F2E]" />
-                        </div>
-                        <div className="space-y-2">
-                          <div className="h-20 rounded-lg bg-[#13161F] border border-[#1C1F2E] flex items-center justify-center">
-                            <div className="flex gap-1">
-                              {[40, 60, 35, 70, 55].map((h, i) => (
-                                <div key={i} className="w-3 rounded-full bg-[#F97316]/40" style={{ height: `${h}%` }} />
-                              ))}
-                            </div>
-                          </div>
-                          <div className="h-14 rounded-lg bg-[#13161F] border border-[#1C1F2E]" />
-                        </div>
-                      </div>
-                      
-                      {/* Card 2 */}
-                      <div className="rounded-xl bg-[#0D0F17] border border-[#1C1F2E] p-3">
-                        <div className="flex items-center gap-2 mb-3">
-                          <div className="h-3 w-3 rounded-full bg-[#8B5CF6]" />
-                          <div className="h-2 w-20 rounded bg-[#1C1F2E]" />
-                        </div>
-                        <div className="space-y-2">
-                          <div className="h-24 rounded-lg bg-[#13161F] border border-[#1C1F2E]" />
-                          <div className="h-12 rounded-lg bg-[#13161F] border border-[#1C1F2E]" />
-                        </div>
-                      </div>
-                      
-                      {/* Card 3 */}
-                      <div className="rounded-xl bg-[#0D0F17] border border-[#1C1F2E] p-3">
-                        <div className="flex items-center gap-2 mb-3">
-                          <div className="h-3 w-3 rounded-full bg-[#10B981]" />
-                          <div className="h-2 w-14 rounded bg-[#1C1F2E]" />
-                        </div>
-                        <div className="space-y-2">
-                          <div className="h-18 rounded-lg bg-[#13161F] border border-[#1C1F2E] flex items-center justify-center">
-                            <div className="text-xs text-[#3F4558] font-mono">WORKFLOW</div>
-                          </div>
-                          <div className="h-14 rounded-lg bg-[#13161F] border border-[#1C1F2E]" />
-                        </div>
-                      </div>
-                    </div>
+                    {/* Subtle Screen Glare */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-white/5 via-transparent to-transparent pointer-events-none" />
                   </div>
                 </div>
               </div>
-              
-              {/* Subtle shine effect on hover */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-              
-              {/* The actual Kanban Board */}
-              <div className="absolute inset-0 p-5 flex items-center justify-center">
-                <div className="w-full h-full glow-board rounded-2xl bg-[#0D0F17]/80 backdrop-blur-xl border border-[#1C1F2E]/50 p-4 overflow-hidden">
-                  <KanbanBoard />
-                </div>
+
+              {/* MacBook Base (Perspective Base) */}
+              <div className="relative mx-auto -mt-1 h-3 w-[105%] -left-[2.5%] rounded-b-2xl bg-gradient-to-b from-[#404040] to-[#121212] shadow-2xl">
+                {/* Lip / Opening Notch */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-1.5 bg-[#000000]/40 rounded-b-md shadow-inner" />
               </div>
+              
+              {/* Ground Reflection / Glow */}
+              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[80%] h-12 bg-orange-600/20 blur-3xl pointer-events-none" />
             </div>
           </motion.div>
         </div>
