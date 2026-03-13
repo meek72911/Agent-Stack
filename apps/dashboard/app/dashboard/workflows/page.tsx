@@ -18,7 +18,7 @@ export default function WorkflowsPage() {
           </p>
         </div>
         <Button asChild className="gap-2">
-            <Link href="/workflows/new">
+            <Link href="/dashboard/workflows/builder">
                 <Plus className="h-4 w-4" />
                 New Workflow
             </Link>

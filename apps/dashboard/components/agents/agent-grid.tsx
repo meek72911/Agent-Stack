@@ -83,9 +83,9 @@ function AgentCard({ agent }: { agent: Agent }) {
         try {
             const { data: { session } } = await supabase.auth.getSession();
             const token = session?.access_token;
-            const method = isActive ? "DELETE" : "POST";
-            const res = await fetch(`/api/v1/agents/${agent.id}/activate`, {
-                method,
+            const endpoint = isActive ? "deactivate" : "activate";
+            const res = await fetch(`/api/v1/agents/${agent.id}/${endpoint}`, {
+                method: "POST",
                 headers: { Authorization: `Bearer ${token}` },
             });
             if (!res.ok) throw new Error("Toggle failed");

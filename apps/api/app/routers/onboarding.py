@@ -61,16 +61,20 @@ async def update_organization(
     current_user: CurrentUser,
     supabase: SupabaseDep,
 ) -> dict:
-    """Update org name + slug, validate slug is unique."""
+    """Create or update organization for the current user.
+    
+    If user has organization_id, update it. 
+    If not, create one and link it to the user's profile.
+    """
     try:
-        # Check if slug is unique
-        slug_check = (
-            await supabase.table("organizations")
-            .select("id")
-            .eq("slug", request.slug)
-            .neq("id", current_user["organization_id"])
-            .execute()
-        )
+        org_id = current_user.get("organization_id")
+        
+        # Check if slug is unique (excluding current org if it exists)
+        slug_query = supabase.table("organizations").select("id").eq("slug", request.slug)
+        if org_id:
+            slug_query = slug_query.neq("id", org_id)
+        
+        slug_check = await slug_query.execute()
         
         if slug_check.data:
             raise HTTPException(
@@ -78,20 +82,43 @@ async def update_organization(
                 detail=f"Organization slug '{request.slug}' is already taken",
             )
         
-        # Update organization
-        await supabase.table("organizations").update({
-            "name": request.name,
-            "slug": request.slug,
-        }).eq("id", current_user["organization_id"]).execute()
-        
-        return {"message": "Organization updated successfully"}
+        if org_id:
+            # Update existing organization
+            await supabase.table("organizations").update({
+                "name": request.name,
+                "slug": request.slug,
+            }).eq("id", org_id).execute()
+        else:
+            # Create new organization
+            new_org_resp = await supabase.table("organizations").insert({
+                "name": request.name,
+                "slug": request.slug,
+                "created_by": current_user["id"]
+            }).execute()
+            
+            if not new_org_resp.data:
+                raise HTTPException(
+                    status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                    detail="Failed to create organization",
+                )
+            
+            new_org_id = new_org_resp.data[0]["id"]
+            
+            # Link to profile
+            await supabase.table("profiles").update({
+                "organization_id": new_org_id,
+                "role": "owner"
+            }).eq("id", current_user["id"]).execute()
+            
+        return {"message": "Organization processed successfully"}
         
     except HTTPException:
         raise
-    except Exception:
+    except Exception as exc:
+        print(f"Error in onboarding organization: {exc}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Failed to update organization",
+            detail=f"Failed to process organization: {exc}",
         )
 
 
