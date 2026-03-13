@@ -14,12 +14,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useUser } from "@/hooks/use-user";
+import { useUIStore } from "@/stores/ui-store";
+import { Switch } from "@/components/ui/switch";
 import { createClient } from "@/lib/supabase/client";
+import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 
 export function DashboardHeader() {
     const router = useRouter();
     const { user, profile } = useUser();
+    const { isAdminMode, toggleAdminMode } = useUIStore();
     const supabase = createClient();
 
     const initials =
@@ -56,19 +60,30 @@ export function DashboardHeader() {
             </div>
 
             <div className="ml-auto flex items-center gap-2">
-                {/* Admin Mode Toggle */}
+                {/* Admin Mode Sleek Toggle */}
                 {(profile?.role === "admin" || profile?.role === "owner") && (
-                    <Button
-                        variant="ghost"
-                        size="sm"
-                        className="hidden md:flex items-center gap-2 px-4 h-10 rounded-xl bg-primary/10 border border-primary/20 text-primary font-bold hover:bg-primary/20 hover:border-primary/30 active:scale-95 transition-all group"
-                        asChild
-                    >
-                        <Link href="/dashboard/admin">
-                            <Zap className="h-4 w-4 fill-primary animate-pulse" />
-                            <span className="tracking-tight">Admin Mode</span>
-                        </Link>
-                    </Button>
+                    <div className="hidden md:flex items-center gap-3 px-4 py-1.5 rounded-2xl bg-white/[0.03] border border-white/5 hover:bg-white/[0.05] transition-all group">
+                        <div className="flex flex-col items-end">
+                            <span className="text-[10px] font-extrabold tracking-widest text-muted-foreground uppercase leading-none">Admin</span>
+                            <span className={cn(
+                                "text-[10px] font-bold mt-1 transition-colors duration-300",
+                                isAdminMode ? "text-primary" : "text-muted-foreground/50"
+                            )}>
+                                {isAdminMode ? "ACTIVE" : "OFF"}
+                            </span>
+                        </div>
+                        <Switch 
+                            checked={isAdminMode} 
+                            onCheckedChange={() => {
+                                toggleAdminMode();
+                                toast.info(`Admin Mode ${!isAdminMode ? 'Activated' : 'Disabled'}`, {
+                                    icon: <Zap className={cn("h-4 w-4", !isAdminMode ? "text-primary" : "")} />,
+                                    description: !isAdminMode ? "Elevated privileges enabled." : "Returned to standard access."
+                                });
+                            }}
+                            className="data-[state=checked]:bg-primary/20 data-[state=checked]:border-primary/50"
+                        />
+                    </div>
                 )}
 
                 {/* Notifications Dropdown */}

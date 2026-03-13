@@ -7,6 +7,7 @@ interface UIState {
   theme: 'light' | 'dark' | 'system';
   activeModal: string | null;
   commandPaletteOpen: boolean;
+  isAdminMode: boolean;
   setSidebarOpen: (open: boolean) => void;
   setSidebarCollapsed: (collapsed: boolean) => void;
   toggleSidebar: () => void;
@@ -14,6 +15,8 @@ interface UIState {
   openModal: (id: string) => void;
   closeModal: () => void;
   toggleCommandPalette: () => void;
+  setIsAdminMode: (enabled: boolean) => void;
+  toggleAdminMode: () => void;
 }
 
 export const useUIStore = create<UIState>()(
@@ -24,6 +27,7 @@ export const useUIStore = create<UIState>()(
       theme: 'dark',
       activeModal: null,
       commandPaletteOpen: false,
+      isAdminMode: false,
       setSidebarOpen: (sidebarOpen) => set({ sidebarOpen }),
       setSidebarCollapsed: (sidebarCollapsed) => set({ sidebarCollapsed }),
       toggleSidebar: () => set((s) => ({ sidebarOpen: !s.sidebarOpen })),
@@ -31,7 +35,9 @@ export const useUIStore = create<UIState>()(
       openModal: (activeModal) => set({ activeModal }),
       closeModal: () => set({ activeModal: null }),
       toggleCommandPalette: () => set((s) => ({ commandPaletteOpen: !s.commandPaletteOpen })),
+      setIsAdminMode: (isAdminMode) => set({ isAdminMode }),
+      toggleAdminMode: () => set((s) => ({ isAdminMode: !s.isAdminMode })),
     }),
-    { name: 'agentstack-ui', partialize: (s) => ({ sidebarOpen: s.sidebarOpen, sidebarCollapsed: s.sidebarCollapsed, theme: s.theme }) }
+    { name: 'agentstack-ui', partialize: (s) => ({ sidebarOpen: s.sidebarOpen, sidebarCollapsed: s.sidebarCollapsed, theme: s.theme, isAdminMode: s.isAdminMode }) }
   )
 );
