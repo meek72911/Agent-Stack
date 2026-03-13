@@ -46,7 +46,7 @@ export function PopularWorkflows() {
           })}
         </div>
         <div className="mt-12 text-center">
-          <Link href="/templates"><Button variant="outline" size="lg" className="gap-2 border-[#1C1F2E] text-[#94A3B8]">View All Workflows <ArrowRight className="h-4 w-4" /></Button></Link>
+          <Link href="/dashboard/templates"><Button variant="outline" size="lg" className="gap-2 border-[#1C1F2E] text-[#94A3B8]">View All Workflows <ArrowRight className="h-4 w-4" /></Button></Link>
         </div>
       </div>
     </section>
