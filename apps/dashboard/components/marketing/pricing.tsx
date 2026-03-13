@@ -79,17 +79,18 @@ export function Pricing() {
                 {annual && plan.saveAmount && <div className="mt-1 text-sm text-[#10B981] font-medium">Save ${plan.saveAmount}/year</div>}
               </div>
               <Button 
+                variant={plan.highlighted ? "default" : "outline"}
                 className={cn(
-                  "mt-8 transition-all duration-200 hover:scale-[1.02]",
+                  "mt-8 transition-all duration-300 hover:scale-[1.02]",
                   plan.highlighted 
-                    ? "bg-gradient-premium text-[#07080C] font-bold shadow-glow-sm hover:shadow-glow" 
-                    : "border border-[#1C1F2E] text-[#94A3B8] hover:border-[rgba(249,115,22,0.5)] hover:text-[#F1F5F9]"
+                    ? "bg-gradient-premium text-[#07080C] font-bold shadow-glow-sm hover:shadow-glow border-none" 
+                    : "border-white/10 bg-white/5 text-white hover:border-primary/50 hover:bg-white/10"
                 )} 
                 style={{ borderRadius: '12px', padding: '14px 24px' }} 
                 size="lg" 
                 asChild
               >
-                <Link href="/register">{plan.cta}</Link>
+                <Link href="/signup">{plan.cta}</Link>
               </Button>
               <ul className="mt-8 flex-1 space-y-3">
                 {plan.features.map((feature) => (
