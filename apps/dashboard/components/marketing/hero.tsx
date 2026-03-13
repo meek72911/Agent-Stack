@@ -123,7 +123,7 @@ export function Hero() {
               Students, teachers, creators, founders — anyone can build and run AI workflows with natural language. Zero code. 22+ templates. Powered by Claude.
             </motion.p>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-8 flex flex-wrap items-center gap-4">
-              <Link href="/register"><Button size="lg" className="gap-2 text-base bg-gradient-premium text-[#07080C] font-bold shadow-premium hover:shadow-lg hover:scale-[1.02] transition-all duration-200" style={{ borderRadius: '12px', padding: '16px 32px' }}>Start for Free <ArrowRight className="h-5 w-5" /></Button></Link>
+              <Link href="/signup"><Button size="lg" className="gap-2 text-base bg-gradient-premium text-[#07080C] font-bold shadow-premium hover:shadow-lg hover:scale-[1.02] transition-all duration-200" style={{ borderRadius: '12px', padding: '16px 32px' }}>Start for Free <ArrowRight className="h-5 w-5" /></Button></Link>
               <Link href="#workflows"><Button variant="outline" size="lg" className="gap-2 text-base border-[#1C1F2E] text-[#94A3B8] hover:border-[#F97316]/50 hover:text-[#F1F5F9] transition-all duration-200" style={{ borderRadius: '12px', padding: '16px 32px' }}>View Workflows</Button></Link>
             </motion.div>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.4 }} className="mt-5 flex items-center gap-1 text-sm text-[#3F4558]">

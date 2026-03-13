@@ -1,3 +1,4 @@
+import { MarketingNavbar } from "@/components/marketing/navbar";
 import { Hero } from "@/components/marketing/hero";
 import { StatsMarquee } from "@/components/marketing/stats-marquee";
 import { PopularWorkflows } from "@/components/marketing/popular-workflows";
@@ -11,6 +12,7 @@ import { Waitlist } from "@/components/marketing/waitlist";
 export default function HomePage() {
   return (
     <>
+      <MarketingNavbar />
       <Hero />
       <StatsMarquee />
       <PopularWorkflows />
